@@ -11,10 +11,9 @@
 <header class="masthead">
   <div class="eyebrow"><a href="https://w1hs.com/the-prouty/prouty-2026/">Prouty 2026 After Action Records</a></div>
   <h1>APRS: Coverage, Tracking &amp; Telemetry</h1>
-  <p>What the captured APRS packet logs tell us about radio coverage, where the rovers
-  went, and how the trackers behaved &mdash; across the 2026 Prouty Ultimate (Fri Jul&nbsp;10)
-  and Bike Event (Sat Jul&nbsp;11). Two bodies of work: coverage &amp; mapping, and tracker
-  health &amp; telemetry.</p>
+  <p>What the captured APRS packet logs show about radio coverage, where the rovers went, and
+  how the trackers behaved, across the 2026 Prouty Ultimate (Fri Jul&nbsp;10) and Bike Event
+  (Sat Jul&nbsp;11).</p>
 </header>
 
 <main>
@@ -127,12 +126,11 @@ cannot, which is why this section covers those five alone.</p>
   </tbody>
 </table>
 
-<p><strong>W1CMS-11</strong> holds the operationally interesting losses: four ran 8&ndash;16&nbsp;minutes
-and all clustered in the higher-elevation northern section in the afternoon &mdash; a clear
-terrain-shadowing signature, the kind of place a rover appears stuck on the map while still moving.
-<strong>W1CMS-8</strong> lost lock most often (nine times) but almost always recovered within seconds,
-which reads more like an install or antenna issue than terrain &mdash; and its battery trend below
-points the same way.</p>
+<p><strong>W1CMS-11</strong> had the losses worth attention: four ran 8&ndash;16&nbsp;minutes and all
+fell in the higher-elevation northern section in the afternoon &mdash; terrain shadowing, the kind of
+spot where a rover looks stuck on the map while still moving. <strong>W1CMS-8</strong> lost lock most
+often (nine times) but almost always recovered within seconds, which looks more like an install or
+antenna issue than terrain &mdash; and its battery trend below points the same way.</p>
 
 <blockquote>
   <p>Because the Voyagers self-report, a frozen position <em>without</em> an accompanying
@@ -188,12 +186,12 @@ jumping between 0,0 and its real position; its true track is short. This is the 
 output, not coverage, was at fault.</p>
 
 <h2>Tooling &amp; open items</h2>
-<p>All of the analysis is reproducible from the capture database with a small set of standalone Python
-tools, kept in a git repository. The tools split into the same two buckets as this page &mdash;
-coverage/mapping (<span class="mono">digi_kmz</span>, <span class="mono">prouty_kmz</span>,
-<span class="mono">add_packet_dots</span>, <span class="mono">aprs_gap_check</span>) and tracker
-health/telemetry (<span class="mono">tracker_health</span>, <span class="mono">telemetry_decode</span>)
-&mdash; plus diagnostics used to work out the Voyagers' status wording and telemetry calibration.</p>
+<p>The analysis is reproducible from the capture database with a set of standalone Python tools kept
+in a git repository: coverage and mapping (<span class="mono">digi_kmz</span>,
+<span class="mono">prouty_kmz</span>, <span class="mono">add_packet_dots</span>,
+<span class="mono">aprs_gap_check</span>), tracker health and telemetry
+(<span class="mono">tracker_health</span>, <span class="mono">telemetry_decode</span>), and a few
+diagnostics used to work out the Voyagers' status wording and telemetry calibration.</p>
 
 <table class="plain">
   <tbody>
