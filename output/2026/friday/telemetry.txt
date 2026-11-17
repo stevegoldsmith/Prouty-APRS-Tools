@@ -1,74 +1,40 @@
 Scanned 15763 entries, window 2026-07-10 04:00-2026-07-11 04:00z
 
-AB1XQ-9: no T# telemetry in window
+Rover 4 (Sweep) (AB1XQ-9): no T# telemetry in window
 
-AC1TS-9: no T# telemetry in window
+Trouble (AE1H-9): no T# telemetry in window
 
-AE1H-9: no T# telemetry in window
+Rover 3 (Recovery) (K1EHZ-9): no T# telemetry in window
 
-K1EHZ-9: no T# telemetry in window
+Logistics Coord (N0JSR-9): no T# telemetry in window
 
-=== KC1LFU-1 ===
-  T# samples: 86   first 07-10 04:00z  last 07-10 19:41z
-  EQNS: none in stream; voltage scale ~0.1003 V/count (empirical (30 comment-V matches))
-  Voltage channel: ch1 'ch1'  min 10.83 / max 14.04 / last 12.64 V  (rising)
-  ** LOWVOLT: dropped to 10.83 V (< 11.5) first at 07-10 08:20z
+Lead Vehicle (NA1T-8): no T# telemetry in window
 
-KC1LFU-11: no T# telemetry in window
-
-KC1LFU-2: no T# telemetry in window
-
-KC1LFU-3: no T# telemetry in window
-
-N0JSR-9: no T# telemetry in window
-
-N1EMF-9: no T# telemetry in window
-
-N1KRB-9: no T# telemetry in window
-
-NA1T-8: no T# telemetry in window
-
-=== W1CMS-1 ===
-  T# samples: 1   first 07-10 10:38z  last 07-10 10:38z
-  EQNS: none found -> channel values shown as RAW counts (uncalibrated)
-  (no telemetry definitions seen for W1CMS-1; run longer window to catch PARM/EQNS)
-  Voltage channel: ch1 'ch1'  min 135.00 / max 135.00 / last 135.00 counts  (steady)
-
-=== W1CMS-10 ===
+=== Med 1 (W1CMS-10) ===
   T# samples: 63   first 07-10 09:13z  last 07-10 21:02z
   PARM: Vin,Temp,A3,A4,A5
   UNIT: Volt,C,None,None,None
   EQNS: [(0.0, 0.075, 0.0), (0.0, 0.5, -64.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0)]   (source: stream)
   Voltage channel: ch1 'Vin'  min 12.75 / max 14.47 / last 13.80 Volt  (falling)
 
-W1CMS-11: no T# telemetry in window
+Recovery Bus (W1CMS-12): no T# telemetry in window
 
-W1CMS-12: no T# telemetry in window
-
-W1CMS-3: no T# telemetry in window
-
-W1CMS-4: no T# telemetry in window
-
-=== W1CMS-7 ===
+=== Rover 1 (W1CMS-7) ===
   T# samples: 36   first 07-10 08:38z  last 07-10 17:08z
   PARM: Vin,Temp,A3,A4,A5
   UNIT: Volt,C,None,None,None
   EQNS: [(0.0, 0.075, 0.0), (0.0, 0.5, -64.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0)]   (source: stream)
   Voltage channel: ch1 'Vin'  min 13.28 / max 13.42 / last 13.35 Volt  (steady)
 
-=== W1CMS-8 ===
+=== Safety (W1CMS-8) ===
   T# samples: 28   first 07-10 08:41z  last 07-10 21:54z
   PARM: Vin,Temp,A3,A4,A5
   UNIT: Volt,C,None,None,None
   EQNS: [(0.0, 0.075, 0.0), (0.0, 0.5, -64.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0)]   (source: stream)
   Voltage channel: ch1 'Vin'  min 12.15 / max 14.92 / last 12.60 Volt  (falling)
 
-W1CMS-9: no T# telemetry in window
+Bike Tech Van (W1HS-13): no T# telemetry in window
 
-W1HS-13: no T# telemetry in window
-
-W1HS-9: no T# telemetry in window
-
-W1TGA-9: no T# telemetry in window
+Rover 2 (W1TGA-9): no T# telemetry in window
 
 Decoded time series -> output/2026/friday/telemetry_20260710_20260711.csv
