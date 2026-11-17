@@ -3,8 +3,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Prouty APRS map</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
-  integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWr9W5+nqcHHb1Z9RSoxeN0gaM9+ySeThJ7uodHpZaDeX+n5c47/5ZmkHAG5w==" crossorigin="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
   html,body{margin:0;height:100%;font-family:system-ui,-apple-system,"Open Sans",sans-serif}
   #map{position:absolute;inset:0}
@@ -21,12 +20,26 @@
 <div class="mapbar"><b id="title">Prouty APRS</b> &middot; <span id="status">loading&hellip;</span></div>
 <div id="err"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
-  integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg==" crossorigin=""></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
-  integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg==" crossorigin=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
+// surface any error (incl. a CDN script that failed to load) instead of hanging
+window.addEventListener("error", function (e) {
+  var el = document.getElementById("err"), st = document.getElementById("status");
+  if (el) { el.style.display = "block";
+            el.textContent = "Map error: " + ((e && e.message) || "a script failed to load"); }
+  if (st) st.textContent = "error";
+}, true);
+
 (function () {
+  if (typeof L === "undefined" || typeof JSZip === "undefined") {
+    var el = document.getElementById("err"), st = document.getElementById("status");
+    if (el) { el.style.display = "block";
+      el.textContent = "Map libraries did not load (Leaflet / JSZip from cdnjs). " +
+                       "This device or network may be blocking cdnjs.cloudflare.com."; }
+    if (st) st.textContent = "error";
+    return;
+  }
   // Which day's overlay to show. ?day=friday|saturday, or an explicit ?kmz=<url>.
   var params = new URLSearchParams(location.search);
   var day = (params.get("day") || "friday").toLowerCase();
