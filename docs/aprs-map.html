@@ -20,7 +20,7 @@
 <div id="map"></div>
 <div class="mapbar">
   <div><b id="title">Prouty APRS</b> &middot; <span id="status">loading&hellip;</span></div>
-  <div class="hint">Each colour is one rover. Dots are received packets &mdash; a gap in the dots along a road is where no receiver heard that rover.</div>
+  <div class="hint">Each colour is one tracker. Dots are received packets &mdash; a gap in the dots along a road is where no receiver heard that tracker.</div>
 </div>
 <div id="err"></div>
 
@@ -110,7 +110,7 @@ window.addEventListener("error", function (e) {
     return n.length ? n[0] : null;
   }
 
-  // a small "all / none" control that checks/unchecks every rover at once
+  // a small "all / none" control that checks/unchecks every tracker at once
   function addAllNone(overlays) {
     var ctl = L.control({ position: "topright" });
     ctl.onAdd = function () {
@@ -166,7 +166,7 @@ window.addEventListener("error", function (e) {
       var layer = L.layerGroup();
       L.polyline(pts, { color: color, weight: 3, opacity: 0.85 }).addTo(layer);
       // a dot at every received packet: gaps between dots on a road are spots
-      // we did not hear this rover (coverage holes / dropouts).
+      // we did not hear this tracker (coverage holes / dropouts).
       for (var k = 0; k < pts.length; k++) {
         var end = (k === pts.length - 1);
         var cm = L.circleMarker(pts[k], { radius: end ? 6 : 4,
@@ -190,7 +190,7 @@ window.addEventListener("error", function (e) {
     L.control.layers({ "Topographic": topo, "Streets": osm, "Satellite + labels": hybrid },
       overlays, { collapsed: true }).addTo(map);
     addAllNone(overlays);
-    document.getElementById("status").textContent = count + " rovers";
+    document.getElementById("status").textContent = count + " trackers";
   }
 
   fetch(kmzUrl, { credentials: "include" })

@@ -12,7 +12,7 @@
 <header class="masthead">
   <div class="eyebrow"><a href="https://w1hs.com/the-prouty/prouty-2026/">Prouty 2026 After Action Records</a></div>
   <h1>APRS &mdash; The Prouty Ultimate</h1>
-  <p>Radio coverage, rover tracks and tracker health for The Prouty Ultimate, Friday, July&nbsp;10,
+  <p>Radio coverage, vehicle tracks, and tracker health for The Prouty Ultimate, Friday, July&nbsp;10,
   2026. <a href="2026-07-11-aprs-saturday.html">The Prouty (Saturday)</a> is in a separate report.
   Trackers are labelled by their tactical assignment.</p>
 </header>
@@ -21,31 +21,31 @@
 
 <div class="tiles">
   <div class="tile"><div class="n">15,763</div><div class="l">packets captured</div></div>
-  <div class="tile"><div class="n">11</div><div class="l">assigned rovers</div></div>
+  <div class="tile"><div class="n">11</div><div class="l">assigned trackers</div></div>
   <div class="tile"><div class="n">10</div><div class="l">GPS-loss events (3 Voyagers)</div></div>
   <div class="tile"><div class="n">1</div><div class="l">null-GPS fault (Lead Vehicle)</div></div>
 </div>
 
 <h2>Scope</h2>
-<p><strong>Eleven rovers were assigned</strong>, and this report covers those. Four more trackers
+<p><strong>Eleven trackers were assigned</strong>, and this report covers those. Four more trackers
 beaconed without an assignment (testing, or left powered on) and are excluded, along with fixed
 infrastructure.</p>
-<p>These maps show where each rover's packets reached APRS-IS: anywhere at least one receiver heard
-the rover and gated it to the internet. That receiver may be one of ours (N1GMC-1/2, the W1FN sites,
+<p>These maps show where each tracker's packets reached APRS-IS: anywhere at least one receiver heard
+the tracker and gated it to the internet. That receiver may be one of ours (N1GMC-1/2, the W1FN sites,
 WX1NH-10) or any other igate in range &mdash; the maps are not filtered to our own sites. A gap is
-where no receiver heard the rover, or it went quiet. Which of <em>our</em> sites heard what &mdash;
+where no receiver heard the tracker, or it went quiet. Which of <em>our</em> sites heard what &mdash;
 true per-site coverage &mdash; needs the packet paths analysed and is not included here yet.</p>
 <p class="small">Window 2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC (local midnight to midnight, EDT).</p>
 
 <h2>Maps</h2>
-<p>Every rover's track on the map below, each a different colour. Use the layers control (top
-right) to turn individual rovers on and off, or the all/none box to clear them. Each dot is a received packet, so a stretch of road with no dots is where no receiver heard that rover; tap a track's end dot for its tactical call.</p>
-<iframe class="map" src="aprs-map.html?day=friday" title="Friday rover tracks" loading="lazy"></iframe>
+<p>Every vehicle is plotted on the map below, each a different colour. Use the layers control (top
+ right) to turn individual trackers on and off, or the all/none box to clear them. Each dot indicates a received position packet, so a stretch of road with no dots is where no receiver heard that tracker; tap a track's end dot for its tactical call.</p>
+<iframe class="map" src="aprs-map.html?day=friday" title="Friday tracker paths" loading="lazy"></iframe>
 <p class="small"><a href="aprs-map.html?day=friday" target="_blank">Open the map full-screen.</a>
 Per-tracker track files (each with a dot at every received packet) and the anomaly map (GPS-loss,
 freeze and bad-fix locations) are in the gate's <span class="mono">aprs/friday/</span> folder.</p>
 
-<h2>Where the rovers went</h2>
+<h2>Where the trackers went</h2>
 <p>Packet counts are reliable; track distances are approximate and inflated by GPS jitter.</p>
 <table class="plain">
   <thead><tr><th>Assignment</th><th>Callsign</th><th>Packets</th><th>Approx. track</th></tr></thead>
@@ -65,9 +65,10 @@ freeze and bad-fix locations) are in the gate's <span class="mono">aprs/friday/<
 </table>
 
 <h2>GPS lock reporting (Voyagers)</h2>
-<p>The W1CMS rovers carry Microsat Voyager units that announce their own GPS state &mdash;
-"GPS Lock Lost" on loss, "GPS Locked" on reacquire &mdash; so we can state when each lost its fix and
-for how long. Three Voyagers ran Friday and reported <strong>10 losses</strong>:</p>
+<p>This year we used several new Microsat Voyager trackers, which report their own GPS lock status
+&mdash; "GPS Lock Lost" when they lose the satellites, "GPS Locked" when they recover. That lets us
+say when one lost its fix and for how long. Three trackers reported GPS losses Friday, <strong>10 in
+total</strong>:</p>
 <table class="plain">
   <thead><tr><th>Assignment</th><th>Callsign</th><th>Losses</th><th>Longest</th><th>Notes</th></tr></thead>
   <tbody>
@@ -81,7 +82,7 @@ trend below, that points to an install or antenna issue rather than terrain.</p>
 
 <h2>Battery telemetry</h2>
 <p>Voltage from the Voyagers' analog telemetry (channel&nbsp;1 = input voltage). The other Friday
-rovers carry no telemetry; everyone stayed in the normal 12&ndash;15&nbsp;V band and nobody hit a
+trackers carry no telemetry; everyone stayed in the normal 12&ndash;15&nbsp;V band and nobody hit a
 low-battery condition.</p>
 <table class="plain">
   <thead><tr><th>Assignment</th><th>Callsign</th><th>Min&nbsp;V</th><th>Max&nbsp;V</th><th>Last&nbsp;V</th><th>Trend</th></tr></thead>
@@ -108,11 +109,11 @@ notable because it is not a Voyager and so cannot self-report a GPS loss.
 <strong>Med 1 (W1CMS-10)</strong> had a shorter 8-minute freeze mid-afternoon.</p>
 
 <h2>Dropouts</h2>
-<p>Every rover logged multi-minute silences. Whether each is a coverage gap or the tracker going
+<p>Every tracker logged multi-minute silences. Whether each is a coverage gap or the tracker going
 silent is not yet separated out; that needs the coverage data cross-referenced.</p>
 
 <p class="source">Source: <span class="mono">aprsis</span> capture stream, 15,763 packets · window
-2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC · 11 assigned rovers (<span class="mono">config/friday.csv</span>).<br>
+2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC · 11 assigned trackers (<span class="mono">config/friday.csv</span>).<br>
 Report generated 2026-11-17 17:30&nbsp;UTC.</p>
 
 </main>
