@@ -13,27 +13,28 @@
   <h1>APRS &mdash; Friday (Ultimate)</h1>
   <p>Radio coverage, rover tracks and tracker health for the Prouty Ultimate, Friday July&nbsp;10,
   2026 &mdash; the redesigned 100-mile northern loop. Saturday's Bike Event is covered in a
-  <a href="2026-07-11-aprs-saturday.html">separate report</a>.</p>
+  <a href="2026-07-11-aprs-saturday.html">separate report</a>. Trackers are labelled by their
+  Friday tactical assignment.</p>
 </header>
 
 <main>
 
 <div class="tiles">
   <div class="tile"><div class="n">15,763</div><div class="l">packets captured</div></div>
-  <div class="tile"><div class="n">15</div><div class="l">rovers active</div></div>
+  <div class="tile"><div class="n">11</div><div class="l">assigned rovers</div></div>
   <div class="tile"><div class="n">10</div><div class="l">GPS-loss events (3 Voyagers)</div></div>
-  <div class="tile"><div class="n">1</div><div class="l">low-battery event</div></div>
+  <div class="tile"><div class="n">1</div><div class="l">null-GPS fault (Lead Vehicle)</div></div>
 </div>
 
 <h2>Scope</h2>
 <p>Friday is the Prouty Ultimate &mdash; the long, mountainous northern loop, run this year in the
-redesigned reverse direction. Of the 24 rover callsigns in the roster, <strong>15 were active
-Friday</strong>; the rest (W1CMS-3/4/9/11, AC1TS-9, KC1LFU-2/3/11, N1KRB-9) came out Saturday.
-Coverage is credited to a fixed station when it digipeated a packet (<span class="mono">CALL*</span>)
-or gated it off the air (<span class="mono">qAR</span>/<span class="mono">qAO</span>); the transmitting
-rover's position is plotted for each, so each station's dot cloud is its real reception footprint.</p>
-<p class="small">Window 2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC (local midnight to midnight,
-EDT). Tracker labels are callsigns; tactical assignments pending.</p>
+redesigned reverse direction. <strong>11 rovers had a Friday assignment</strong>; the rest of the
+fleet came out Saturday. (Four trackers beaconed Friday with no Friday role &mdash; pre-event testing
+or left powered on &mdash; and are excluded.) Coverage is credited to a fixed station when it
+digipeated a packet (<span class="mono">CALL*</span>) or gated it off the air
+(<span class="mono">qAR</span>/<span class="mono">qAO</span>); the transmitting rover's position is
+plotted for each, so each station's dot cloud is its real reception footprint.</p>
+<p class="small">Window 2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC (local midnight to midnight, EDT).</p>
 
 <h2>Maps</h2>
 <p>Google Earth KMZ, behind the gate. The overlay shows every Friday rover at once, each a
@@ -46,71 +47,65 @@ packet (gaps in the dots = coverage holes).</p>
 
 <h2>Where the rovers went</h2>
 <p>Packet counts are reliable; track distances are approximate and inflated by GPS jitter.</p>
-<table>
-  <thead><tr><th>Rover</th><th>Packets</th><th>Approx. track</th></tr></thead>
+<table class="plain">
+  <thead><tr><th>Assignment</th><th>Callsign</th><th>Packets</th><th>Approx. track</th></tr></thead>
   <tbody>
-    <tr><td>AB1XQ-9</td><td>272</td><td>256 km</td></tr>
-    <tr><td>AE1H-9</td><td>203</td><td>191 km</td></tr>
-    <tr><td>K1EHZ-9</td><td>143</td><td>129 km</td></tr>
-    <tr><td>N0JSR-9</td><td>132</td><td>187 km</td></tr>
-    <tr><td>N1EMF-9</td><td>57</td><td>~0 km (stationary)</td></tr>
-    <tr><td>NA1T-8</td><td>160</td><td><em>invalid &mdash; see faults</em></td></tr>
-    <tr><td>W1CMS-1</td><td>9</td><td>13 km (barely active)</td></tr>
-    <tr><td>W1CMS-7</td><td>145</td><td>173 km</td></tr>
-    <tr><td>W1CMS-8</td><td>129</td><td>242 km</td></tr>
-    <tr><td>W1CMS-10</td><td>237</td><td>177 km</td></tr>
-    <tr><td>W1CMS-12</td><td>196</td><td>141 km</td></tr>
-    <tr><td>W1HS-9</td><td>9</td><td>8 km (barely active)</td></tr>
-    <tr><td>W1HS-13</td><td>81</td><td>143 km</td></tr>
-    <tr><td>W1TGA-9</td><td>102</td><td>139 km</td></tr>
-    <tr><td>KC1LFU-1</td><td>303</td><td>17 km (mostly stationary)</td></tr>
+    <tr><td>Lead Vehicle</td><td class="mono">NA1T-8</td><td>160</td><td><em>invalid &mdash; see faults</em></td></tr>
+    <tr><td>Logistics Coord.</td><td class="mono">N0JSR-9</td><td>132</td><td>187 km</td></tr>
+    <tr><td>Safety</td><td class="mono">W1CMS-8</td><td>129</td><td>242 km</td></tr>
+    <tr><td>Rover 1</td><td class="mono">W1CMS-7</td><td>145</td><td>173 km</td></tr>
+    <tr><td>Rover 2</td><td class="mono">W1TGA-9</td><td>102</td><td>139 km</td></tr>
+    <tr><td>Rover 3 (Recovery)</td><td class="mono">K1EHZ-9</td><td>143</td><td>129 km</td></tr>
+    <tr><td>Rover 4 (Sweep)</td><td class="mono">AB1XQ-9</td><td>272</td><td>256 km</td></tr>
+    <tr><td>Trouble</td><td class="mono">AE1H-9</td><td>203</td><td>191 km</td></tr>
+    <tr><td>Bike Tech Van</td><td class="mono">W1HS-13</td><td>81</td><td>143 km</td></tr>
+    <tr><td>Recovery Bus</td><td class="mono">W1CMS-12</td><td>196</td><td>141 km</td></tr>
+    <tr><td>Med 1</td><td class="mono">W1CMS-10</td><td>237</td><td>177 km</td></tr>
   </tbody>
 </table>
 
 <h2>GPS lock reporting (Voyagers)</h2>
 <p>The W1CMS rovers carry Microsat Voyager units that announce their own GPS state &mdash;
 "GPS Lock Lost" on loss, "GPS Locked" on reacquire &mdash; so we can state when each went dark and
-for how long. Three Voyagers ran Friday and reported <strong>10 losses</strong> between them:</p>
+for how long. Three Voyagers ran Friday and reported <strong>10 losses</strong>:</p>
 <table class="plain">
-  <thead><tr><th>Voyager</th><th>Losses</th><th>Longest</th><th>Notes</th></tr></thead>
+  <thead><tr><th>Assignment</th><th>Callsign</th><th>Losses</th><th>Longest</th><th>Notes</th></tr></thead>
   <tbody>
-    <tr><td>W1CMS-8</td><td>8</td><td>2 min</td><td>Scattered through the day; most seconds-long</td></tr>
-    <tr><td>W1CMS-7</td><td>1</td><td>24 s</td><td>Single, early (08:37)</td></tr>
-    <tr><td>W1CMS-10</td><td>1</td><td>42 s</td><td>Single, morning (09:12)</td></tr>
+    <tr><td>Safety</td><td class="mono">W1CMS-8</td><td>8</td><td>2 min</td><td>Scattered through the day; most seconds-long</td></tr>
+    <tr><td>Rover 1</td><td class="mono">W1CMS-7</td><td>1</td><td>24 s</td><td>Single, early (08:37)</td></tr>
+    <tr><td>Med 1</td><td class="mono">W1CMS-10</td><td>1</td><td>42 s</td><td>Single, morning (09:12)</td></tr>
   </tbody>
 </table>
-<p>W1CMS-8 lost lock most often but recovered quickly each time; combined with its battery trend
+<p>Safety (W1CMS-8) lost lock most often but recovered quickly each time; with its battery trend
 below, that reads more like an install or antenna issue than terrain.</p>
 
 <h2>Battery telemetry</h2>
-<p>Voltage from the Voyagers' analog telemetry (channel&nbsp;1 = input voltage) and from comment
-voltage on other units. The rest of the Friday rovers carry no telemetry.</p>
-<table>
-  <thead><tr><th>Rover</th><th>Min&nbsp;V</th><th>Max&nbsp;V</th><th>Last&nbsp;V</th><th>Trend</th></tr></thead>
+<p>Voltage from the Voyagers' analog telemetry (channel&nbsp;1 = input voltage). The other Friday
+rovers carry no telemetry; everyone stayed in the normal 12&ndash;15&nbsp;V band and nobody hit a
+low-battery condition.</p>
+<table class="plain">
+  <thead><tr><th>Assignment</th><th>Callsign</th><th>Min&nbsp;V</th><th>Max&nbsp;V</th><th>Last&nbsp;V</th><th>Trend</th></tr></thead>
   <tbody>
-    <tr><td>W1CMS-7</td><td>13.28</td><td>13.42</td><td>13.35</td><td>steady</td></tr>
-    <tr><td>W1CMS-8</td><td>12.15</td><td>14.92</td><td>12.60</td><td><span class="flag">falling</span></td></tr>
-    <tr><td>W1CMS-10</td><td>12.75</td><td>14.47</td><td>13.80</td><td>falling</td></tr>
-    <tr><td>KC1LFU-1</td><td>10.83</td><td>14.04</td><td>12.64</td><td><span class="flag">low &mdash; see below</span></td></tr>
+    <tr><td>Rover 1</td><td class="mono">W1CMS-7</td><td>13.28</td><td>13.42</td><td>13.35</td><td>steady</td></tr>
+    <tr><td>Safety</td><td class="mono">W1CMS-8</td><td>12.15</td><td>14.92</td><td>12.60</td><td><span class="flag">falling</span></td></tr>
+    <tr><td>Med 1</td><td class="mono">W1CMS-10</td><td>12.75</td><td>14.47</td><td>13.80</td><td>falling</td></tr>
   </tbody>
 </table>
 <blockquote>
-  <p><strong>KC1LFU-1</strong> dipped to 10.83&nbsp;V at 08:20 &mdash; the only rover under the
-  11.5&nbsp;V line Friday. It recovered, and with only 17&nbsp;km of movement across 303 packets it was
-  largely parked, so this looks like an engine-off dip rather than a failing system.</p>
-  <p><strong>W1CMS-8</strong> trended down (last 12.60&nbsp;V, no strong charging peak) and also had the
-  most GPS losses &mdash; the voltage and GPS behaviour point at the same install. Worth a charging/wiring
-  check.</p>
+  <p><strong>Safety (W1CMS-8)</strong> trended down (last 12.60&nbsp;V, no strong charging peak) and also
+  had the most GPS losses &mdash; the voltage and GPS behaviour point at the same install. Worth a
+  charging/wiring check; it carried into Saturday too, where it ran as Rover&nbsp;6-7.</p>
 </blockquote>
 
 <h2>Faults</h2>
-<p><strong>NA1T-8</strong> sent null-island (0,&nbsp;0) position fixes &mdash; an invalid GPS reading.
-Its reported 8,752&nbsp;km distance and wild speeds are artefacts of the tracker jumping between 0,0 and
-its real position; its true track is short. This is the one Friday tracker whose own output, not
-coverage, was at fault.</p>
-<p><strong>N0JSR-9</strong> froze for 30&nbsp;minutes (17:46&ndash;18:17) near 43.712,&nbsp;&minus;72.417
-while still reporting movement &mdash; a stuck position, worth a look given it is not a Voyager and so
-cannot self-report a GPS loss. <strong>W1CMS-10</strong> had a shorter 8-minute freeze mid-afternoon.</p>
+<p><strong>Lead Vehicle (NA1T-8)</strong> sent null-island (0,&nbsp;0) position fixes &mdash; an invalid
+GPS reading. Its reported 8,752&nbsp;km distance and wild speeds are artefacts of the tracker jumping
+between 0,0 and its real position; its true track is short. This is the one Friday tracker whose own
+output, not coverage, was at fault.</p>
+<p><strong>Logistics Coord. (N0JSR-9)</strong> froze for 30&nbsp;minutes (17:46&ndash;18:17) near
+43.712,&nbsp;&minus;72.417 while still reporting movement &mdash; a stuck position worth a look, and
+notable because it is not a Voyager and so cannot self-report a GPS loss.
+<strong>Med 1 (W1CMS-10)</strong> had a shorter 8-minute freeze mid-afternoon.</p>
 
 <h2>Dropouts</h2>
 <p>Every rover logged multi-minute silences. Friday's capture pipeline ran clean (the one 11-minute
@@ -119,8 +114,8 @@ the tracker itself is not yet separable without cross-referencing the coverage d
 step.</p>
 
 <p class="source">Source: <span class="mono">aprsis</span> capture stream, 15,763 packets · window
-2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC · 15 of 24 rovers active.<br>
-Report generated 2026-11-17 17:11&nbsp;UTC.</p>
+2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC · 11 assigned rovers (<span class="mono">config/friday.csv</span>).<br>
+Report generated 2026-11-17 17:30&nbsp;UTC.</p>
 
 </main>
 </div>
