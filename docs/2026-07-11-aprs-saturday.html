@@ -32,7 +32,7 @@ infrastructure is excluded.</p>
 <p>"Coverage" means which of our fixed relay sites &mdash; the digipeaters and internet gateways
 (N1GMC-1 and -2, the W1FN sites, and WX1NH-10) &mdash; actually heard each rover. For every packet a
 site passed along, we plot where the rover was when it sent it; the spread of those points shows how
-far that site could reliably hear, and a hole in the spread is ground it was deaf to.</p>
+ far that site could hear, and a hole in the spread is where it could not.</p>
 
 <blockquote>
   <p>One capture caveat: we dropped the connection to APRS-IS for about 11&nbsp;minutes
@@ -85,18 +85,17 @@ freeze and bad-fix locations) are in the gate's <span class="mono">aprs/saturday
 <table class="plain">
   <thead><tr><th>Assignment</th><th>Callsign</th><th>Losses</th><th>Longest</th><th>Notes</th></tr></thead>
   <tbody>
-    <tr><td>Trouble 2 (North)</td><td class="mono">W1CMS-11</td><td>8</td><td>16 min</td><td>Four ran 8&ndash;16&nbsp;min, all afternoon on the northern high ground (~44.0&ndash;44.1&nbsp;N)</td></tr>
-    <tr><td>Recovery 3 (North)</td><td class="mono">W1CMS-7</td><td>5</td><td>1.4 min</td><td>Tight burst 09:21&ndash;09:29 at one spot</td></tr>
-    <tr><td>Gravel Rover 4</td><td class="mono">W1CMS-9</td><td>2</td><td>12 s</td><td>Two brief, same location</td></tr>
-    <tr><td>Rover 6-7</td><td class="mono">W1CMS-8</td><td>1</td><td>24 s</td><td>Single (10:07)</td></tr>
-    <tr><td>Med 1</td><td class="mono">W1CMS-10</td><td>1</td><td>48 s</td><td>Single (09:21)</td></tr>
+    <tr><td>Trouble 2 (North)</td><td class="mono">W1CMS-11</td><td>8</td><td>16 min</td><td>Four of 8&ndash;16&nbsp;min, all afternoon, near 44.0&ndash;44.1&nbsp;N (north end of the route)</td></tr>
+    <tr><td>Recovery 3 (North)</td><td class="mono">W1CMS-7</td><td>5</td><td>1.4 min</td><td>All five 09:21&ndash;09:29 at one location</td></tr>
+    <tr><td>Gravel Rover 4</td><td class="mono">W1CMS-9</td><td>2</td><td>12 s</td><td>Two, same location</td></tr>
+    <tr><td>Rover 6-7</td><td class="mono">W1CMS-8</td><td>1</td><td>24 s</td><td>One, 10:07</td></tr>
+    <tr><td>Med 1</td><td class="mono">W1CMS-10</td><td>1</td><td>48 s</td><td>One, 09:21</td></tr>
   </tbody>
 </table>
-<p>Of note: <strong>Trouble 2 (North) (W1CMS-11)</strong> had four losses of 8&ndash;16&nbsp;minutes, all
-afternoon in the higher-elevation northern section &mdash; consistent with terrain shadowing, and Trouble 2
-worked that northern ground. The anomaly map shows the locations, which is useful for deciding where a
-fill-in digi would help. Recovery 3 (W1CMS-7), also a north assignment, had a tight same-spot burst,
-consistent with one specific shadowed location.</p>
+<p><strong>Trouble 2 (North) (W1CMS-11)</strong> had the longest losses: four of 8&ndash;16&nbsp;minutes,
+all in the afternoon near 44.0&ndash;44.1&nbsp;N, the north end of the route. Recovery 3 (W1CMS-7) had
+five short losses, all at one location between 09:21 and 09:29. The anomaly map has the exact
+coordinates.</p>
 
 <h2>Battery telemetry</h2>
 <p>About half the Saturday fleet beacons voltage &mdash; the five Voyagers via analog telemetry and
@@ -127,12 +126,11 @@ several others via comment voltage. The fleet was healthy on power; nobody cross
 <h2>Faults</h2>
 <p><strong>Rover 6-7 (W1CMS-8)</strong> froze for 16&nbsp;minutes (15:22&ndash;15:38) near
 43.969,&nbsp;&minus;72.116 while reporting movement. <strong>Safety 1 (NA1T-8)</strong> had a 10-minute
-freeze (13:35&ndash;13:45) but, unlike its Friday run as Lead Vehicle, sent no null-island fixes &mdash;
-it behaved better Saturday.</p>
+freeze (13:35&ndash;13:45), but no null-island fixes Saturday (unlike its Friday run as Lead Vehicle).</p>
 
 <h2>Dropouts</h2>
 <p>Every rover logged multi-minute silences. The cluster around 15:03&ndash;15:14 lines up with the
-capture-pipeline gap above and is ours; the rest are not yet separated into terrain versus tracker,
+APRS-IS drop above and is ours; the rest are not yet separated into coverage gap versus tracker,
 which needs the coverage data cross-referenced.</p>
 
 <p class="source">Source: <span class="mono">aprsis</span> capture stream, 19,065 packets · window

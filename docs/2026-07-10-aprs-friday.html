@@ -33,7 +33,7 @@ infrastructure.</p>
 <p>"Coverage" means which of our fixed relay sites &mdash; the digipeaters and internet gateways
 (N1GMC-1 and -2, the W1FN sites, and WX1NH-10) &mdash; actually heard each rover. For every packet a
 site passed along, we plot where the rover was when it sent it; the spread of those points shows how
-far that site could reliably hear, and a hole in the spread is ground it was deaf to.</p>
+ far that site could hear, and a hole in the spread is where it could not.</p>
 <p class="small">Window 2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC (local midnight to midnight, EDT).</p>
 
 <h2>Maps</h2>
@@ -65,7 +65,7 @@ freeze and bad-fix locations) are in the gate's <span class="mono">aprs/friday/<
 
 <h2>GPS lock reporting (Voyagers)</h2>
 <p>The W1CMS rovers carry Microsat Voyager units that announce their own GPS state &mdash;
-"GPS Lock Lost" on loss, "GPS Locked" on reacquire &mdash; so we can state when each went dark and
+"GPS Lock Lost" on loss, "GPS Locked" on reacquire &mdash; so we can state when each lost its fix and
 for how long. Three Voyagers ran Friday and reported <strong>10 losses</strong>:</p>
 <table class="plain">
   <thead><tr><th>Assignment</th><th>Callsign</th><th>Losses</th><th>Longest</th><th>Notes</th></tr></thead>
@@ -91,24 +91,24 @@ low-battery condition.</p>
   </tbody>
 </table>
 <blockquote>
-  <p><strong>Safety (W1CMS-8)</strong> trended down (last 12.60&nbsp;V, no strong charging peak) and also
-  had the most GPS losses &mdash; the voltage and GPS behaviour point at the same install. Worth a
-  charging/wiring check; it carried into Saturday too, where it ran as Rover&nbsp;6-7.</p>
+  <p><strong>Safety (W1CMS-8)</strong> charged to 14.92&nbsp;V but ended the day down at 12.60, and had
+  the most GPS losses. Worth a charging/wiring check &mdash; more so given its Saturday run as Rover&nbsp;6-7,
+  where it never charged above 12.97&nbsp;V.</p>
 </blockquote>
 
 <h2>Faults</h2>
 <p><strong>Lead Vehicle (NA1T-8)</strong> sent null-island (0,&nbsp;0) position fixes &mdash; an invalid
-GPS reading. Its reported 8,752&nbsp;km distance and wild speeds are artefacts of the tracker jumping
-between 0,0 and its real position; its true track is short. This is the one Friday tracker whose own
-output, not coverage, was at fault.</p>
+GPS reading. Its reported 8,752&nbsp;km distance and impossible implied speeds are artefacts of the
+tracker jumping between 0,0 and its real position; its true track is short. The fault is in the
+tracker's own output, not coverage.</p>
 <p><strong>Logistics Coord. (N0JSR-9)</strong> froze for 30&nbsp;minutes (17:46&ndash;18:17) near
 43.712,&nbsp;&minus;72.417 while still reporting movement &mdash; a stuck position worth a look, and
 notable because it is not a Voyager and so cannot self-report a GPS loss.
 <strong>Med 1 (W1CMS-10)</strong> had a shorter 8-minute freeze mid-afternoon.</p>
 
 <h2>Dropouts</h2>
-<p>Every rover logged multi-minute silences. Whether each is a terrain shadow or the tracker itself
-is not yet separated out; that needs the coverage data cross-referenced.</p>
+<p>Every rover logged multi-minute silences. Whether each is a coverage gap or the tracker going
+silent is not yet separated out; that needs the coverage data cross-referenced.</p>
 
 <p class="source">Source: <span class="mono">aprsis</span> capture stream, 15,763 packets · window
 2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC · 11 assigned rovers (<span class="mono">config/friday.csv</span>).<br>
