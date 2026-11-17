@@ -106,6 +106,28 @@ window.addEventListener("error", function (e) {
     return n.length ? n[0] : null;
   }
 
+  // a small "all / none" control that checks/unchecks every rover at once
+  function addAllNone(overlays) {
+    var ctl = L.control({ position: "topright" });
+    ctl.onAdd = function () {
+      var d = L.DomUtil.create("div", "leaflet-bar");
+      d.style.cssText = "background:#fff;padding:3px 8px;font:12px/1.4 system-ui,sans-serif";
+      d.innerHTML = 'tracks: <a href="#" id="trkAll" style="color:#1f3a5f">all</a> / ' +
+                    '<a href="#" id="trkNone" style="color:#1f3a5f">none</a>';
+      L.DomEvent.disableClickPropagation(d);
+      return d;
+    };
+    ctl.addTo(map);
+    function setAll(on) {
+      for (var n in overlays) {
+        if (on && !map.hasLayer(overlays[n])) map.addLayer(overlays[n]);
+        else if (!on && map.hasLayer(overlays[n])) map.removeLayer(overlays[n]);
+      }
+    }
+    document.getElementById("trkAll").onclick = function (e) { e.preventDefault(); setAll(true); };
+    document.getElementById("trkNone").onclick = function (e) { e.preventDefault(); setAll(false); };
+  }
+
   function render(kmlText) {
     var xml = new DOMParser().parseFromString(kmlText, "text/xml");
     if (xml.getElementsByTagName("parsererror").length) return fail("Could not parse the map data.");
@@ -138,12 +160,24 @@ window.addEventListener("error", function (e) {
       var pts = parseCoords(coordEl.textContent);
       if (pts.length < 2) continue;
       var layer = L.layerGroup();
-      L.polyline(pts, { color: color, weight: 3, opacity: 0.9 }).addTo(layer);
-      L.circleMarker(pts[pts.length - 1], { radius: 4, color: "#000", weight: 1,
-        fillColor: color, fillOpacity: 1 }).bindTooltip(name).addTo(layer);
+      L.polyline(pts, { color: color, weight: 3, opacity: 0.85 }).addTo(layer);
+      // a dot at every received packet: gaps between dots on a road are spots
+      // we did not hear this rover (coverage holes / dropouts).
+      for (var k = 0; k < pts.length; k++) {
+        var end = (k === pts.length - 1);
+        var cm = L.circleMarker(pts[k], { radius: end ? 4 : 2.2,
+          color: end ? "#000" : color, weight: end ? 1 : 0,
+          fillColor: color, fillOpacity: end ? 1 : 0.85 });
+        if (end) cm.bindTooltip(name);
+        cm.addTo(layer);
+        bounds.extend(pts[k]);
+      }
       layer.addTo(map);
-      overlays[name] = layer;
-      for (var k = 0; k < pts.length; k++) bounds.extend(pts[k]);
+      // colour swatch in the layers list, so it doubles as a key
+      var swatch = '<span style="display:inline-block;width:11px;height:11px;' +
+        'border:1px solid rgba(0,0,0,.25);background:' + color +
+        ';margin-right:5px;vertical-align:-1px"></span>';
+      overlays[swatch + name] = layer;
       count++;
     }
 
@@ -151,6 +185,7 @@ window.addEventListener("error", function (e) {
     if (bounds.isValid()) map.fitBounds(bounds.pad(0.05));
     L.control.layers({ "Topographic": topo, "Streets": osm, "Satellite + labels": hybrid },
       overlays, { collapsed: true }).addTo(map);
+    addAllNone(overlays);
     document.getElementById("status").textContent = count + " rovers";
   }
 
