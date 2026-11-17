@@ -55,11 +55,20 @@ window.addEventListener("error", function (e) {
   document.getElementById("title").textContent = cfg.title;
 
   var map = L.map("map", { preferCanvas: true });
-  var sat = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    { maxZoom: 19, attribution: "Imagery © Esri" });
+  var A = "https://server.arcgisonline.com/ArcGIS/rest/services/";
+  // Topographic: roads, town names and terrain shading (default).
+  var topo = L.tileLayer(A + "World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+    { maxZoom: 19, attribution: "Tiles © Esri" });
+  // Plain street map.
   var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    { maxZoom: 19, attribution: "© OpenStreetMap" });
-  sat.addTo(map);
+    { maxZoom: 19, attribution: "© OpenStreetMap contributors" });
+  // Satellite with road + place labels on top (hybrid).
+  var hybrid = L.layerGroup([
+    L.tileLayer(A + "World_Imagery/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19, attribution: "Imagery © Esri" }),
+    L.tileLayer(A + "Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19 }),
+    L.tileLayer(A + "Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19 })
+  ]);
+  topo.addTo(map);
   map.setView([43.9, -72.2], 9);
 
   function fail(msg) {
@@ -140,7 +149,8 @@ window.addEventListener("error", function (e) {
 
     if (!count) return fail("No tracks found in this overlay.");
     if (bounds.isValid()) map.fitBounds(bounds.pad(0.05));
-    L.control.layers({ "Satellite": sat, "Map": osm }, overlays, { collapsed: true }).addTo(map);
+    L.control.layers({ "Topographic": topo, "Streets": osm, "Satellite + labels": hybrid },
+      overlays, { collapsed: true }).addTo(map);
     document.getElementById("status").textContent = count + " rovers";
   }
 
