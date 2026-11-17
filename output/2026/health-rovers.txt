@@ -1,0 +1,243 @@
+Scanned 35134 entries.  Trackers: explicit list (24).  Window 2026-07-10 00:00-2026-07-11 23:59z
+
+tracker     pkts  active    dist  maxgap  flags
+W1CMS-11      82    584m  204.1k     62m  GPSLOST,JUMP,DROPOUT
+W1CMS-8      297   2000m  472.6k    728m  GPSLOST,FROZEN,JUMP,DROPOUT
+N0JSR-9      251   2503m  440.5k    942m  FROZEN,JUMP,DROPOUT
+AB1XQ-9      477   2208m  529.7k    654m  JUMP,DROPOUT
+W1CMS-7      299   2124m  347.9k    984m  GPSLOST,DROPOUT
+AE1H-9       499   2184m  535.1k    778m  JUMP,DROPOUT
+K1EHZ-9      232   2092m  389.1k    908m  JUMP,DROPOUT
+W1HS-9       151   2761m  205.9k    641m  JUMP,DROPOUT
+KC1LFU-1     437   2614m  203.1k    833m  DROPOUT
+NA1T-8       363   2755m 17570.8k   1014m  NOFIX,FROZEN,JUMP,DROPOUT
+W1TGA-9      205   2302m  341.1k   1017m  JUMP,DROPOUT
+W1CMS-1       75   2564m  194.0k    858m  DROPOUT
+W1CMS-10     507   2106m  294.0k    733m  GPSLOST,FROZEN,DROPOUT
+W1CMS-3      226    668m  331.7k     14m  JUMP,DROPOUT
+N1EMF-9      210   1745m  260.7k    851m  JUMP,DROPOUT
+W1HS-13       81    426m  142.5k     54m  JUMP,DROPOUT
+W1CMS-9      159    426m  169.0k     22m  GPSLOST,JUMP,DROPOUT
+W1CMS-12     448   2011m  282.8k    847m  JUMP,DROPOUT
+AC1TS-9      189    542m  289.5k     20m  JUMP,DROPOUT
+W1CMS-4       90    560m  164.1k     49m  DROPOUT
+KC1LFU-3      45    338m   81.6k     60m  DROPOUT
+N1KRB-9      126    444m  186.9k     20m  JUMP,DROPOUT
+KC1LFU-11    101    380m  101.8k     14m  DROPOUT
+KC1LFU-2     128    574m  213.9k     25m  DROPOUT
+
+--- details ---
+
+W1CMS-11  [GPSLOST,JUMP,DROPOUT]
+  GPSLOST: GPS lock lost 10:21:20z near 43.70367,-72.28217, reacquired after 12s (via GPS Locked)
+  GPSLOST: GPS lock lost 13:22:46z near 44.03217,-72.01500, reacquired after 18s (via GPS Locked)
+  GPSLOST: GPS lock lost 14:17:49z near 43.98133,-72.12033, reacquired after 30s (via next fix)
+  GPSLOST: GPS lock lost 16:00:08z near 44.14600,-72.03783, reacquired after 8.2min (via next fix)
+  GPSLOST: GPS lock lost 16:33:50z near 44.10033,-72.02617, reacquired after 12s (via GPS Locked)
+  GPSLOST: GPS lock lost 16:58:33z near 44.02917,-72.01517, reacquired after 11.8min (via next fix)
+  GPSLOST: GPS lock lost 17:18:24z near 43.98850,-72.07900, reacquired after 16.0min (via next fix)
+  GPSLOST: GPS lock lost 18:08:56z near 43.96867,-72.11617, reacquired after 6s (via GPS Locked)
+  JUMP (jump): 2.11km in 4s = 1807km/h at 10:35:12z
+  DROPOUT: 62m00s silent 09:20-10:22z
+  DROPOUT: 12m00s silent 10:56-11:08z
+  DROPOUT: 41m26s silent 11:16-11:58z
+  ... and 13 more dropouts
+
+W1CMS-8  [GPSLOST,FROZEN,JUMP,DROPOUT]
+  GPSLOST: GPS lock lost 09:06:13z near 43.70367,-72.28783, reacquired after 1.2min (via GPS Locked)
+  GPSLOST: GPS lock lost 09:27:46z near 43.71650,-72.27533, reacquired after 12s (via GPS Locked)
+  GPSLOST: GPS lock lost 09:56:26z near 43.70367,-72.28933, reacquired after 2.0min (via next fix)
+  GPSLOST: GPS lock lost 14:48:05z near 43.72217,-72.26950, reacquired after 24s (via GPS Locked)
+  GPSLOST: GPS lock lost 15:21:20z near 43.71233,-72.41700, reacquired after 48s (via GPS Locked)
+  GPSLOST: GPS lock lost 18:24:27z near 43.71233,-72.41683, reacquired after 2.0min (via next fix)
+  GPSLOST: GPS lock lost 18:57:15z near 43.70700,-72.28667, reacquired after 42s (via GPS Locked)
+  GPSLOST: GPS lock lost 21:53:50z near 43.72367,-72.27000, reacquired after 12s (via GPS Locked)
+  GPSLOST: GPS lock lost 10:07:27z near 43.72367,-72.26950, reacquired after 24s (via GPS Locked)
+  FROZEN: stuck 7 fixes / 16.0min at 43.96867,-72.11633 while reporting up to 7 km/h (15:22-15:38z)
+  JUMP (jump): 1.93km in 33s = 205km/h at 10:36:28z
+  DROPOUT: 23m59s silent 09:08-09:32z
+  DROPOUT: 26m00s silent 09:32-09:58z
+  DROPOUT: 36m01s silent 12:10-12:46z
+  ... and 7 more dropouts
+
+N0JSR-9  [FROZEN,JUMP,DROPOUT]
+  FROZEN: stuck 4 fixes / 30.4min at 43.71233,-72.41650 while reporting up to 15 km/h (17:46-18:17z)
+  JUMP (jump): 1.56km in 8s = 663km/h at 10:35:08z
+  JUMP (jump): 3.5km in 71s = 176km/h at 10:39:00z
+  JUMP (jump): 3.46km in 77s = 160km/h at 10:41:00z
+  DROPOUT: 528m43s silent 00:07-08:56z
+  DROPOUT: 15m03s silent 09:22-09:37z
+  DROPOUT: 20m07s silent 09:37-09:57z
+  ... and 22 more dropouts
+
+AB1XQ-9  [JUMP,DROPOUT]
+  JUMP (jump): 0.56km in 5s = 381km/h at 11:31:12z
+  JUMP (jump): 6.37km in 70s = 326km/h at 09:15:55z
+  JUMP (jump): 7.35km in 49s = 533km/h at 09:16:44z
+  JUMP (jump): 4.26km in 41s = 366km/h at 10:07:24z
+  JUMP (jump): 2.92km in 28s = 366km/h at 10:13:32z
+  ... and 3 more jumps
+  DROPOUT: 16m00s silent 15:13-15:29z
+  DROPOUT: 20m03s silent 15:55-16:15z
+  DROPOUT: 27m59s silent 19:24-19:52z
+  ... and 11 more dropouts
+
+W1CMS-7  [GPSLOST,DROPOUT]
+  GPSLOST: GPS lock lost 08:37:34z, reacquired after 24s (via GPS Locked)
+  GPSLOST: GPS lock lost 09:21:18z near 43.72250,-72.26950, reacquired after 1.3min (via GPS Locked) (2 status beacons)
+  GPSLOST: GPS lock lost 09:23:16z near 43.72250,-72.26950, reacquired after 18s (via GPS Locked)
+  GPSLOST: GPS lock lost 09:24:37z near 43.72250,-72.26950, reacquired after 1.4min (via GPS Locked) (2 status beacons)
+  GPSLOST: GPS lock lost 09:26:09z near 43.72250,-72.26950, reacquired after 54s (via GPS Locked) (2 status beacons)
+  GPSLOST: GPS lock lost 09:28:59z near 43.72250,-72.26950, reacquired after 6s (via GPS Locked)
+  DROPOUT: 12m00s silent 11:00-11:12z
+  DROPOUT: 14m01s silent 12:18-12:32z
+  DROPOUT: 16m00s silent 12:42-12:58z
+  ... and 12 more dropouts
+
+AE1H-9  [JUMP,DROPOUT]
+  JUMP (jump): 3.43km in 75s = 164km/h at 09:12:14z
+  JUMP (jump): 2.12km in 35s = 213km/h at 09:14:14z
+  JUMP (spike): 7.27km in 66s = 395km/h at 10:19:11z
+  JUMP (jump): 7.27km in 77s = 335km/h at 10:20:29z
+  JUMP (spike): 1.96km in 30s = 234km/h at 10:35:09z
+  ... and 3 more jumps
+  DROPOUT: 12m06s silent 09:57-10:09z
+  DROPOUT: 12m08s silent 12:39-12:51z
+  DROPOUT: 20m11s silent 12:51-13:11z
+  ... and 6 more dropouts
+
+K1EHZ-9  [JUMP,DROPOUT]
+  JUMP (jump): 4.76km in 67s = 255km/h at 17:56:02z
+  DROPOUT: 13m13s silent 08:43-08:57z
+  DROPOUT: 26m28s silent 13:41-14:08z
+  DROPOUT: 16m26s silent 14:18-14:34z
+  ... and 20 more dropouts
+
+W1HS-9  [JUMP,DROPOUT]
+  JUMP (jump): 2.14km in 39s = 195km/h at 10:20:57z
+  JUMP (spike): 7.19km in 92s = 279km/h at 16:22:28z
+  JUMP (jump): 7.19km in 25s = 1025km/h at 16:22:54z
+  DROPOUT: 510m59s silent 00:21-08:52z
+  DROPOUT: 102m25s silent 08:54-10:37z
+  DROPOUT: 623m40s silent 10:43-21:07z
+  ... and 13 more dropouts
+
+KC1LFU-1  [DROPOUT]
+  DROPOUT: 12m00s silent 00:22-00:34z
+  DROPOUT: 27m58s silent 08:42-09:10z
+  DROPOUT: 21m59s silent 11:16-11:38z
+  ... and 18 more dropouts
+
+NA1T-8  [NOFIX,FROZEN,JUMP,DROPOUT]
+  NOFIX: 2 packet(s) at ~0,0 (invalid GPS)
+  FROZEN: stuck 5 fixes / 10.1min at 44.02550,-71.96867 while reporting up to 9 km/h (13:35-13:45z)
+  JUMP (jump): 8593.29km in 30621s = 1010km/h at 09:11:32z
+  JUMP (jump): 8594.73km in 85s = 363573km/h at 09:13:32z
+  DROPOUT: 510m21s silent 00:41-09:11z
+  DROPOUT: 15m59s silent 13:00-13:16z
+  DROPOUT: 14m09s silent 13:38-13:52z
+  ... and 6 more dropouts
+
+W1TGA-9  [JUMP,DROPOUT]
+  JUMP (jump): 3.59km in 44s = 292km/h at 10:14:43z
+  JUMP (jump): 3.08km in 69s = 160km/h at 11:17:34z
+  DROPOUT: 418m36s silent 02:36-09:34z
+  DROPOUT: 14m15s silent 10:41-10:56z
+  DROPOUT: 12m10s silent 12:47-12:59z
+  ... and 13 more dropouts
+
+W1CMS-1  [DROPOUT]
+  DROPOUT: 633m59s silent 00:14-10:48z
+  DROPOUT: 523m58s silent 10:48-19:32z
+  DROPOUT: 858m00s silent 20:02-10:20z
+  ... and 15 more dropouts
+
+W1CMS-10  [GPSLOST,FROZEN,DROPOUT]
+  GPSLOST: GPS lock lost 09:12:19z, reacquired after 42s (via GPS Locked)
+  GPSLOST: GPS lock lost 09:21:12z near 43.76633,-72.16167, reacquired after 48s (via GPS Locked)
+  FROZEN: stuck 4 fixes / 8.0min at 43.72850,-72.61867 while reporting up to 9 km/h (15:40-15:48z)
+  DROPOUT: 15m59s silent 14:22-14:38z
+  DROPOUT: 14m00s silent 14:48-15:02z
+  DROPOUT: 37m59s silent 15:02-15:40z
+  ... and 6 more dropouts
+
+W1CMS-3  [JUMP,DROPOUT]
+  JUMP (jump): 2.82km in 19s = 529km/h at 10:28:12z
+  JUMP (jump): 1.5km in 24s = 216km/h at 10:29:21z
+  JUMP (jump): 1.0km in 4s = 781km/h at 10:35:11z
+  JUMP (jump): 1.62km in 32s = 177km/h at 10:40:12z
+  JUMP (jump): 2.62km in 57s = 164km/h at 11:18:13z
+  DROPOUT: 14m00s silent 11:34-11:48z
+  DROPOUT: 12m00s silent 15:02-15:14z
+  DROPOUT: 13m59s silent 17:26-17:40z
+
+N1EMF-9  [JUMP,DROPOUT]
+  JUMP (jump): 2.05km in 27s = 273km/h at 10:40:06z
+  DROPOUT: 129m12s silent 14:59-17:08z
+  DROPOUT: 851m29s silent 18:58-09:09z
+  DROPOUT: 12m40s silent 09:38-09:50z
+  ... and 9 more dropouts
+
+W1HS-13  [JUMP,DROPOUT]
+  JUMP (jump): 1.7km in 32s = 188km/h at 10:50:34z
+  JUMP (jump): 1.9km in 30s = 227km/h at 12:08:49z
+  DROPOUT: 49m19s silent 11:04-11:54z
+  DROPOUT: 24m34s silent 12:43-13:07z
+  DROPOUT: 12m04s silent 13:17-13:29z
+  ... and 5 more dropouts
+
+W1CMS-9  [GPSLOST,JUMP,DROPOUT]
+  GPSLOST: GPS lock lost 15:16:23z near 43.72300,-72.27083, reacquired after 12s (via GPS Locked)
+  GPSLOST: GPS lock lost 15:22:21z near 43.72300,-72.27083, reacquired after 12s (via GPS Locked)
+  JUMP (jump): 1.15km in 3s = 1099km/h at 13:00:16z
+  DROPOUT: 12m01s silent 13:28-13:40z
+  DROPOUT: 22m00s silent 15:02-15:24z
+  DROPOUT: 16m03s silent 16:40-16:56z
+
+W1CMS-12  [JUMP,DROPOUT]
+  JUMP (spike): 4.36km in 37s = 415km/h at 16:22:28z
+  JUMP (jump): 4.25km in 82s = 185km/h at 16:23:51z
+  DROPOUT: 14m02s silent 15:13-15:27z
+  DROPOUT: 14m14s silent 15:46-16:00z
+  DROPOUT: 16m02s silent 16:10-16:26z
+  ... and 3 more dropouts
+
+AC1TS-9  [JUMP,DROPOUT]
+  JUMP (jump): 1.67km in 36s = 163km/h at 10:40:16z
+  JUMP (jump): 2.07km in 33s = 224km/h at 17:55:32z
+  DROPOUT: 12m06s silent 11:02-11:15z
+  DROPOUT: 12m20s silent 13:19-13:32z
+  DROPOUT: 12m08s silent 13:32-13:44z
+  ... and 3 more dropouts
+
+W1CMS-4  [DROPOUT]
+  DROPOUT: 49m21s silent 11:15-12:04z
+  DROPOUT: 12m00s silent 12:12-12:24z
+  DROPOUT: 16m01s silent 13:14-13:30z
+  ... and 7 more dropouts
+
+KC1LFU-3  [DROPOUT]
+  DROPOUT: 42m00s silent 11:34-12:16z
+  DROPOUT: 41m59s silent 12:46-13:28z
+  DROPOUT: 60m00s silent 13:28-14:28z
+  ... and 2 more dropouts
+
+N1KRB-9  [JUMP,DROPOUT]
+  JUMP (jump): 2.78km in 52s = 189km/h at 16:23:21z
+  DROPOUT: 15m59s silent 10:24-10:40z
+  DROPOUT: 20m02s silent 14:59-15:19z
+
+KC1LFU-11  [DROPOUT]
+  DROPOUT: 12m00s silent 12:48-13:00z
+  DROPOUT: 14m00s silent 14:20-14:34z
+  DROPOUT: 12m00s silent 15:02-15:14z
+  ... and 1 more dropouts
+
+KC1LFU-2  [DROPOUT]
+  DROPOUT: 25m59s silent 11:56-12:22z
+  DROPOUT: 16m01s silent 14:58-15:14z
+  DROPOUT: 17m59s silent 18:38-18:56z
+
+Summary CSV -> output/2026/tracker_health_20260710_20260711.csv
+Events  CSV -> output/2026/tracker_events_20260710_20260711.csv
+  anomaly KMZ -> output/2026/tracker_anomalies_20260710_20260711.kmz
