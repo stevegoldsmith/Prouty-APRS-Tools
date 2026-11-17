@@ -50,8 +50,10 @@ for day in friday saturday; do
   src="output/2026/$day"
   dst="$SITE/aprs/$day"
   [ -d "$src" ] || { echo "!! missing $src -- run the $day tools first"; continue; }
+  # The overlay the embedded map fetches goes in html/ beside the map (a
+  # proven-working path depth); per-tracker + anomaly KMZ go in aprs/<day>/.
   ov=$(ls "$src/${short}-overlay_"*.kmz 2>/dev/null | head -1 || true)
-  if [ -n "$ov" ]; then cp "$ov" "$dst/${short}-overlay.kmz"
+  if [ -n "$ov" ]; then cp "$ov" "$SITE/html/${short}-overlay.kmz"
   else echo "!! no ${short}-overlay in $src -- run prouty_kmz.py --combined for $day"; fi
   cp "$src"/export_*.kmz "$dst/" 2>/dev/null || true
   cp "$src"/tracker_anomalies_*.kmz "$dst/" 2>/dev/null || true

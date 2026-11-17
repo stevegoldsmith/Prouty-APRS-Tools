@@ -43,9 +43,12 @@ window.addEventListener("error", function (e) {
   // Which day's overlay to show. ?day=friday|saturday, or an explicit ?kmz=<url>.
   var params = new URLSearchParams(location.search);
   var day = (params.get("day") || "friday").toLowerCase();
+  // overlay sits in the SAME folder as this page (html/), fetched relatively,
+  // so it uses the exact path depth the report pages already serve from --
+  // avoiding the gate's trouble with deeper paths.
   var DAYS = {
-    friday:   { kmz: "/prouty/2026/gate.php/aprs/friday/fri-overlay.kmz",   title: "The Prouty Ultimate — Friday" },
-    saturday: { kmz: "/prouty/2026/gate.php/aprs/saturday/sat-overlay.kmz", title: "The Prouty — Saturday" }
+    friday:   { kmz: "fri-overlay.kmz", title: "The Prouty Ultimate — Friday" },
+    saturday: { kmz: "sat-overlay.kmz", title: "The Prouty — Saturday" }
   };
   var cfg = DAYS[day] || DAYS.friday;
   var kmzUrl = params.get("kmz") || cfg.kmz;
