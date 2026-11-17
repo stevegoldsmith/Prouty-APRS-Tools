@@ -123,12 +123,18 @@ def source_of(raw):
 
 # ---------------------------------------------------------------- detectors ---
 
-def detect_jumps(pts, max_kmh, jump_km):
+def detect_jumps(pts, max_kmh, jump_km, min_dt=2.0):
     jumps = []
     for i in range(len(pts) - 1):
         p, q = pts[i], pts[i + 1]
         dt = (q["ts"] - p["ts"]).total_seconds()
-        if dt <= 0:
+        # Skip steps shorter than min_dt: these are the same beacon heard twice
+        # (two igate paths), or near-simultaneous duplicates in the feed. A real
+        # vehicle does not produce two fixes >jump_km apart within a couple of
+        # seconds, and tiny dt is what manufactures the nonsense 10000+ km/h
+        # "teleports". Genuine bad fixes (a real spike over a normal interval)
+        # still have a normal dt and are kept.
+        if dt < min_dt:
             continue
         d = haversine_km(p["lat"], p["lon"], q["lat"], q["lon"])
         if d >= jump_km and d / (dt / 3600) > max_kmh:
@@ -214,7 +220,7 @@ def analyze_tracker(call, pts, raws, parsefail, gpslost, gpsok, args):
             gaps.append({"t0": a["ts"], "t1": b["ts"], "s": int(g)})
     max_gap = max((g["s"] for g in gaps), default=0)
 
-    jumps = detect_jumps(pts, args.max_speed, args.jump_km)
+    jumps = detect_jumps(pts, args.max_speed, args.jump_km, args.min_jump_dt)
     frozen = detect_frozen(pts, args.frozen_min, args.frozen_count, args.moving_kmh)
 
     volts = [float(m) for r in raws for m in VOLT_RE.findall(r)]
@@ -341,6 +347,8 @@ def main():
     ap.add_argument("--kmz", action="store_true", help="also write an anomalies KMZ")
     ap.add_argument("--gap-min", type=float, default=12, help="beacon gap (min) = DROPOUT")
     ap.add_argument("--max-speed", type=float, default=160, help="km/h above which a step = JUMP")
+    ap.add_argument("--min-jump-dt", type=float, default=2.0,
+                    help="ignore steps shorter than this many seconds (duplicate/near-simultaneous packets)")
     ap.add_argument("--jump-km", type=float, default=0.5, help="min step distance to consider a JUMP")
     ap.add_argument("--frozen-min", type=float, default=5, help="min minutes stuck to consider FROZEN")
     ap.add_argument("--frozen-count", type=int, default=3, help="min identical fixes for FROZEN")
