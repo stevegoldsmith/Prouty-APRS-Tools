@@ -29,10 +29,11 @@
 <h2>Scope</h2>
 <p><strong>Twenty-three rovers were assigned</strong>, and this report covers those. Fixed
 infrastructure is excluded.</p>
-<p>"Coverage" means which of our fixed relay sites &mdash; the digipeaters and internet gateways
-(N1GMC-1 and -2, the W1FN sites, and WX1NH-10) &mdash; actually heard each rover. For every packet a
-site passed along, we plot where the rover was when it sent it; the spread of those points shows how
- far that site could hear, and a hole in the spread is where it could not.</p>
+<p>These maps show where each rover's packets reached APRS-IS: anywhere at least one receiver heard
+the rover and gated it to the internet. That receiver may be one of ours (N1GMC-1/2, the W1FN sites,
+WX1NH-10) or any other igate in range &mdash; the maps are not filtered to our own sites. A gap is
+where no receiver heard the rover, or it went quiet. Which of <em>our</em> sites heard what &mdash;
+true per-site coverage &mdash; needs the packet paths analysed and is not included here yet.</p>
 
 <blockquote>
   <p>One capture caveat: we dropped the connection to APRS-IS for about 11&nbsp;minutes
@@ -43,7 +44,7 @@ site passed along, we plot where the rover was when it sent it; the spread of th
 
 <h2>Maps</h2>
 <p>Every rover's track on the map below, each a different colour. Use the layers control (top
-right) to turn individual rovers on and off, or the all/none box to clear them. Each dot is a received packet, so a stretch of road with no dots is where we lost that rover; tap a track's end dot for its tactical call.</p>
+right) to turn individual rovers on and off, or the all/none box to clear them. Each dot is a received packet, so a stretch of road with no dots is where no receiver heard that rover; tap a track's end dot for its tactical call.</p>
 <iframe class="map" src="aprs-map.html?day=saturday" title="Saturday rover tracks" loading="lazy"></iframe>
 <p class="small"><a href="aprs-map.html?day=saturday" target="_blank">Open the map full-screen.</a>
 Per-tracker track files (each with a dot at every received packet) and the anomaly map (GPS-loss,
