@@ -4,6 +4,7 @@
 <meta name="robots" content="noindex,nofollow">
 <title>The Prouty APRS &#8211; W1HS</title>
 <link rel="stylesheet" href="/prouty/style.css">
+<style>.map{width:100%;height:520px;border:1px solid var(--line);border-radius:6px;margin:.4em 0 .6em;background:#dfe3e8}</style>
 </head><body>
 <nav class="site-nav" aria-label="Site"><a href="https://w1hs.com/">Home</a><a href="https://w1hs.com/nhares-wlnet/">NH ARES Winlink Wednesday</a><a href="https://w1hs.com/aprs/">APRS</a><a href="https://w1hs.com/w1fn/">Twin State Radio Club</a><a href="https://w1hs.com/the-prouty/">The Prouty</a><a href="http://machamradio.com/">Mac Ham Radio</a></nav>
 <div class="wrap">
@@ -41,13 +42,12 @@ far that site could reliably hear, and a hole in the spread is ground it was dea
 <p class="small">Window 2026-07-11 04:00 &ndash; 2026-07-12 04:00&nbsp;UTC (local midnight to midnight, EDT).</p>
 
 <h2>Maps</h2>
-<p>Google Earth KMZ, behind the gate. The overlay shows every Saturday rover at once, each a
-colour-coded, toggleable track; per-tracker files hold one rover each with a dot at every received
-packet (gaps in the dots = coverage holes).</p>
-<ul>
-  <li><a href="/prouty/2026/gate.php/aprs/saturday/sat-overlay.kmz">Saturday overlay &mdash; all rovers</a></li>
-  <li>Per-tracker tracks &amp; the anomaly map (GPS-loss, freeze, bad-fix spots) are in the same gate folder.</li>
-</ul>
+<p>Every rover's track on the map below, each a different colour. Use the layers control (top
+right) to turn individual rovers on and off; tap a track's end dot for its tactical call.</p>
+<iframe class="map" src="aprs-map.html?day=saturday" title="Saturday rover tracks" loading="lazy"></iframe>
+<p class="small"><a href="aprs-map.html?day=saturday" target="_blank">Open the map full-screen.</a>
+Per-tracker track files (each with a dot at every received packet) and the anomaly map (GPS-loss,
+freeze and bad-fix locations) are in the gate's <span class="mono">aprs/saturday/</span> folder.</p>
 
 <h2>Where the rovers went</h2>
 <p>Packet counts are reliable; track distances are approximate and inflated by GPS jitter.</p>
