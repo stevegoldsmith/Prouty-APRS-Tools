@@ -10,6 +10,7 @@
   .mapbar{position:absolute;z-index:1000;top:8px;left:8px;background:#fff;border:1px solid #e3e3e3;
     border-radius:6px;padding:6px 10px;font-size:13px;color:#1f3a5f;box-shadow:0 1px 4px #0002}
   .mapbar b{font-weight:600}
+  .mapbar .hint{margin-top:3px;font-size:11px;line-height:1.35;color:#555;max-width:320px}
   #err{position:absolute;z-index:1001;top:50%;left:50%;transform:translate(-50%,-50%);
     background:#fff;border:1px solid #e3e3e3;border-radius:8px;padding:16px 20px;max-width:80%;
     font-size:14px;color:#333;display:none}
@@ -17,7 +18,10 @@
 </style>
 </head><body>
 <div id="map"></div>
-<div class="mapbar"><b id="title">Prouty APRS</b> &middot; <span id="status">loading&hellip;</span></div>
+<div class="mapbar">
+  <div><b id="title">Prouty APRS</b> &middot; <span id="status">loading&hellip;</span></div>
+  <div class="hint">Each colour is one rover. Dots are received packets &mdash; a gap in the dots along a road is where we lost that rover.</div>
+</div>
 <div id="err"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -165,9 +169,9 @@ window.addEventListener("error", function (e) {
       // we did not hear this rover (coverage holes / dropouts).
       for (var k = 0; k < pts.length; k++) {
         var end = (k === pts.length - 1);
-        var cm = L.circleMarker(pts[k], { radius: end ? 4 : 2.2,
-          color: end ? "#000" : color, weight: end ? 1 : 0,
-          fillColor: color, fillOpacity: end ? 1 : 0.85 });
+        var cm = L.circleMarker(pts[k], { radius: end ? 6 : 4,
+          color: end ? "#000" : "#fff", weight: 1,
+          fillColor: color, fillOpacity: 1 });
         if (end) cm.bindTooltip(name);
         cm.addTo(layer);
         bounds.extend(pts[k]);
