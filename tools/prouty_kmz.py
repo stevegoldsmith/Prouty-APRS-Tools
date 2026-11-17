@@ -250,6 +250,67 @@ def write_kmz(path: Path, kml: str, icon_name, icon_bytes):
         if icon_bytes:
             z.writestr(f"files/sym/f24/{icon_name}", icon_bytes)
 
+# --------------------------------------------------- tactical roster / labels ---
+
+def load_roster(path):
+    """CSV with columns callsign,tactical for ONE day's assignments.
+    Returns {CALLSIGN: tactical}. Run Friday with the Friday roster,
+    Saturday with the Saturday roster (one file per day matches the
+    per-day run model)."""
+    import csv
+    roster = {}
+    with open(path, newline="") as f:
+        for row in csv.DictReader(f):
+            cs = (row.get("callsign") or row.get("Callsign") or "").strip().upper()
+            tac = (row.get("tactical") or row.get("Tactical") or "").strip()
+            if cs and tac:
+                roster[cs] = tac
+    return roster
+
+def label_for(call, roster):
+    tac = roster.get(call.upper())
+    return f"{tac} ({call})" if tac else call
+
+# ------------------------------------------------------- combined overlay KML ---
+
+def track_folder(call, label, pts, line_color, icon_href):
+    """One tracker as a <Folder> (track + last-point) for the combined overlay."""
+    alt_carry = 0.0
+    coords = []
+    for p in pts:
+        if p["alt"] is not None:
+            alt_carry = p["alt"]
+        coords.append(f"{p['lon']:.5f},{p['lat']:.5f},{alt_carry:.2f}")
+    last = pts[-1]
+    last_alt = last["alt"] if last["alt"] is not None else alt_carry
+    sid = "t" + call.replace("-", "")
+    return f"""<Folder><name>{esc(label)}</name>
+<Style id="{sid}">
+  <LabelStyle><color>ffa8ff00</color><scale>0.75</scale></LabelStyle>
+  <IconStyle><Icon><href>{icon_href}</href></Icon><scale>0.75</scale></IconStyle>
+  <LineStyle><color>{line_color}</color><width>2</width></LineStyle>
+  <PolyStyle><color>7f{line_color[2:]}</color></PolyStyle>
+</Style>
+<Placemark>
+  <name>{esc(label)}</name>
+  <styleUrl>#{sid}</styleUrl>
+  <MultiGeometry>
+  <Point><altitudeMode>absolute</altitudeMode>
+    <coordinates>{last['lon']:.5f},{last['lat']:.5f},{last_alt:.2f}</coordinates></Point>
+  <LineString><tessellate>1</tessellate><extrude>1</extrude>
+    <altitudeMode>absolute</altitudeMode>
+    <coordinates>
+ {' '.join(coords)}    </coordinates>
+  </LineString>
+  </MultiGeometry>
+</Placemark>
+</Folder>"""
+
+def build_combined_kml(title, folders):
+    return (f'<?xml version="1.0" encoding="UTF-8"?>\n'
+            f'<kml xmlns="http://earth.google.com/kml/2.1">\n<Document id="aprs">\n'
+            f'<name>{esc(title)}</name>\n' + "\n".join(folders) + "\n</Document>\n</kml>\n")
+
 # ------------------------------------------------------------------- main ---
 
 def main():
@@ -265,6 +326,14 @@ def main():
     ap.add_argument("--end", type=parse_arg_time, default=None,
                     help="window end; default now")
     ap.add_argument("--out-dir", default=".", help="directory for output KMZ files")
+    ap.add_argument("--combined", action="store_true",
+                    help="also write ONE overlay KMZ with every tracker (per-tracker folders, "
+                         "colour-coded) so all tracks show together for the day")
+    ap.add_argument("--combined-name", default="overlay",
+                    help="base name for the combined overlay file (default 'overlay')")
+    ap.add_argument("--roster", default=None,
+                    help="CSV (callsign,tactical) of this day's tactical assignments; "
+                         "labels become 'Tactical (CALLSIGN)'. Use one roster file per day.")
     ap.add_argument("--symbols", default=None,
                     help="dir containing hessu/aprs-symbols aprs-symbols-24-*.png sheets")
     args = ap.parse_args()
@@ -276,25 +345,41 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
     symbols_dir = Path(args.symbols) if args.symbols else None
 
+    roster = load_roster(args.roster) if args.roster else {}
+
     r = redis.Redis(host=args.host, port=args.port, db=args.db)
     tracks, unparsed = collect_tracks(r, args.stream, start, end, calls)
 
     stamp = f"{start:%Y%m%d_%H%M%S}_{end:%Y%m%d_%H%M%S}"
     made = 0
+    overlay_folders = []     # for the --combined overlay
     for i, call in enumerate(calls):
         pts = tracks.get(call, [])
         if not pts:
             print(f"  {call}: no position packets in window -- skipped")
             continue
+        label = label_for(call, roster)
+        color = LINE_COLORS[i % len(LINE_COLORS)]
+        # overlay uses a generic dot so the single file stays small and dependency-free
+        overlay_href = "http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png"
         icon_bytes = crop_symbol(symbols_dir, pts[-1]["table"], pts[-1]["symbol"])
         icon_name = symbol_icon_name(pts[-1]["table"], pts[-1]["symbol"])
-        icon_href = (f"files/sym/f24/{icon_name}" if icon_bytes
-                     else "http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png")
-        kml = build_kml(call, pts, LINE_COLORS[i % len(LINE_COLORS)], icon_href)
+        icon_href = (f"files/sym/f24/{icon_name}" if icon_bytes else overlay_href)
+        kml = build_kml(label, pts, color, icon_href)
         out = out_dir / f"export_{call}_{stamp}.kmz"
         write_kmz(out, kml, icon_name, icon_bytes)
         print(f"  {call}: {len(pts)} points -> {out}")
         made += 1
+        if args.combined:
+            overlay_folders.append(track_folder(call, label, pts, color, overlay_href))
+
+    if args.combined and overlay_folders:
+        title = f"Prouty tracks {start:%Y-%m-%d %H:%M}-{end:%Y-%m-%d %H:%M}z"
+        overlay = build_combined_kml(title, overlay_folders)
+        opath = out_dir / f"{args.combined_name}_{stamp}.kmz"
+        with zipfile.ZipFile(opath, "w", zipfile.ZIP_DEFLATED) as z:
+            z.writestr(opath.stem + ".kml", overlay)
+        print(f"  overlay: {len(overlay_folders)} trackers -> {opath}")
 
     note = f" ({unparsed} unparseable packets skipped)" if unparsed else ""
     print(f"\n{made}/{len(calls)} KMZ files written to {out_dir}{note}")
