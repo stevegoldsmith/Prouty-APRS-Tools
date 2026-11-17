@@ -9,3 +9,4 @@ __pycache__/
 
 # NOTE: curated analysis results live under output/ and ARE tracked.
 # Nothing here ignores *.csv / *.kmz, so output/ commits cleanly.
+/site/
