@@ -2,292 +2,213 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>APRS Coverage, Tracking &amp; Telemetry</title>
-<style>
-:root{
-  --bg:#f6f5f1; --panel:#ffffff; --line:#e4e1d8; --stripe:#f0efe9;
-  --ink:#232a23; --muted:#6c7268;
-  --signal:#2f7a43;        /* green accent */
-  --signal-2:#2d6a56;      /* teal timestamps / links */
-  --warn:#b8860b;          /* goldenrod */
-  --alert:#a3472f;         /* rust red */
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);
-  color:var(--ink);margin:0;line-height:1.55;font-size:17px}
-.wrap{max-width:820px;margin:0 auto;padding:28px 20px 72px}
-a{color:var(--signal-2)}
-.masthead{border-bottom:2px solid var(--line);padding-bottom:20px;margin-bottom:28px}
-.eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;font-weight:600}
-.eyebrow a{text-decoration:none;color:var(--signal)}
-.masthead h1{font-size:30px;line-height:1.15;margin:12px 0 10px;letter-spacing:-.01em}
-.masthead .lede{color:var(--muted);margin:0;font-size:16px}
-.masthead .meta{margin:14px 0 0;font-size:13px;color:var(--muted)}
-h2{font-size:22px;margin:40px 0 6px;padding-top:18px;border-top:1px solid var(--line)}
-h2 .n{color:var(--signal);font-variant-numeric:tabular-nums;margin-right:8px}
-h3{font-size:17px;margin:26px 0 6px;color:var(--signal-2)}
-p{margin:12px 0}
-.sub{color:var(--muted);font-size:15px;margin-top:2px}
-/* stat row */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}
-.stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
-.stat .v{font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--signal-2)}
-.stat .l{font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:.02em}
-/* tables */
-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;background:var(--panel);
-  border:1px solid var(--line);border-radius:8px;overflow:hidden}
-th,td{padding:8px 11px;text-align:left;border-top:1px solid var(--line)}
-thead th{background:var(--stripe);font-size:12px;letter-spacing:.03em;text-transform:uppercase;
-  color:var(--muted);border-top:0}
-tbody tr:nth-child(even){background:#fafaf7}
-td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-/* flags / chips */
-.flag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;padding:2px 7px;
-  border-radius:4px;margin:1px 3px 1px 0;white-space:nowrap}
-.f-gps{background:#efe3f0;color:#7a3b86}.f-frozen{background:#fdf0d8;color:#8a6508}
-.f-jump{background:#f6ddd4;color:var(--alert)}.f-drop{background:#e5e8e3;color:#56604f}
-.f-ok{background:#e0efe2;color:var(--signal)}
-/* legend swatches */
-.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0;font-size:14px;color:var(--muted)}
-.legend span{display:inline-flex;align-items:center;gap:7px}
-.dot{width:12px;height:12px;border-radius:50%;display:inline-block;border:1px solid #0002}
-/* callouts */
-.note{border-left:3px solid var(--signal);background:var(--panel);border-radius:0 8px 8px 0;
-  padding:12px 16px;margin:18px 0}
-.note.warn{border-left-color:var(--warn)}
-.note.alert{border-left-color:var(--alert)}
-.note .h{font-weight:600;font-size:14px;letter-spacing:.02em;margin-bottom:3px}
-.note p{margin:4px 0}
-/* file download buttons */
-.files{list-style:none;padding:0;margin:14px 0;display:flex;flex-wrap:wrap;gap:8px}
-.files a{display:inline-block;background:var(--panel);border:1px solid var(--line);border-radius:7px;
-  padding:9px 14px;text-decoration:none;color:var(--signal-2);font-size:14px;font-weight:500}
-.files a:hover{background:var(--stripe)}
-.files a small{display:block;color:var(--muted);font-weight:400;font-size:12px;margin-top:1px}
-code{background:var(--stripe);padding:1px 5px;border-radius:4px;font-size:.88em}
-footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--line);
-  font-size:13px;color:var(--muted)}
-@media (max-width:620px){
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .masthead h1{font-size:25px}
-  body{font-size:16px}
-}
-</style></head>
-<body><div class="wrap">
+<title>2026 Prouty APRS Analysis &#8211; W1HS</title>
+<link rel="stylesheet" href="/prouty/style.css">
+</head><body>
+<nav class="site-nav" aria-label="Site"><a href="https://w1hs.com/">Home</a><a href="https://w1hs.com/nhares-wlnet/">NH ARES Winlink Wednesday</a><a href="https://w1hs.com/aprs/">APRS</a><a href="https://w1hs.com/w1fn/">Twin State Radio Club</a><a href="https://w1hs.com/the-prouty/">The Prouty</a><a href="http://machamradio.com/">Mac Ham Radio</a></nav>
+<div class="wrap">
 
 <header class="masthead">
   <div class="eyebrow"><a href="https://w1hs.com/the-prouty/prouty-2026/">Prouty 2026 After Action Records</a></div>
-  <h1>APRS Coverage, Tracking &amp; Telemetry</h1>
-  <p class="lede">What the APRS packet logs tell us about radio coverage, where the rovers
-  went, and how the new Voyager trackers behaved &mdash; the 2026 Prouty Ultimate (Fri) and
-  Bike Event (Sat).</p>
-  <p class="meta">Source: <code>aprsis</code> capture stream, 35,134 packets · window 2026-07-10 00:00 &ndash; 2026-07-11 23:59 UTC · analysis Nov 2026</p>
+  <h1>APRS: Coverage, Tracking &amp; Telemetry</h1>
+  <p>What the captured APRS packet logs tell us about radio coverage, where the rovers
+  went, and how the trackers behaved &mdash; across the 2026 Prouty Ultimate (Fri Jul&nbsp;10)
+  and Bike Event (Sat Jul&nbsp;11). Two bodies of work: coverage &amp; mapping, and tracker
+  health &amp; telemetry.</p>
 </header>
 
 <main>
 
+<div class="tiles">
+  <div class="tile"><div class="n">35,134</div><div class="l">packets captured</div></div>
+  <div class="tile"><div class="n">24</div><div class="l">rover trackers analyzed</div></div>
+  <div class="tile"><div class="n">5</div><div class="l">Voyagers reporting GPS state</div></div>
+  <div class="tile"><div class="n">11 <span>min</span></div><div class="l">single capture-pipeline gap</div></div>
+</div>
+
+<h2>Scope &amp; method</h2>
 <p>Every APRS packet heard during the event was captured to a local database as it arrived.
-After the event we replayed that capture to answer three questions: <strong>where did our
-digipeater/igate network actually have coverage</strong>, <strong>where did the rovers
-go</strong>, and <strong>how did the trackers themselves perform</strong> &mdash; including the
-new Microsat Voyager units that report their own GPS state. This page summarizes the findings;
-the maps and raw tables are linked as downloads, and the analysis code is in a repository
-(see <a href="#tooling">Tooling</a>).</p>
+After the event we replayed that capture to answer three questions: where our digipeater and
+igate network had coverage, where the rovers went, and how the trackers themselves performed.</p>
+<p>The analysis runs against an explicit roster of the <strong>24 Prouty rover callsigns</strong>
+(fixed digipeaters and igates &mdash; N1GMC-1/2, the W1FN sites, WX1NH-10 and the like &mdash; are
+excluded, and treated separately as infrastructure). The capture stream carries the wider
+APRS-IS feed, so naming the roster explicitly is what keeps distant stations and infrastructure
+out of the rover numbers.</p>
 
-<div class="stats">
-  <div class="stat"><div class="v">35,134</div><div class="l">packets captured</div></div>
-  <div class="stat"><div class="v">7</div><div class="l">digis / igates mapped</div></div>
-  <div class="stat"><div class="v">5</div><div class="l">rover trackers</div></div>
-  <div class="stat"><div class="v">11 min</div><div class="l">single capture gap</div></div>
-</div>
+<blockquote>
+  <p>One capture caveat throughout: the capture pipeline itself went silent once, for about
+  11&nbsp;minutes on Saturday (15:03&ndash;15:14&nbsp;UTC). Any apparent silence from a rover in
+  that window is ours, not the tracker's.</p>
+</blockquote>
 
-<div class="note">
-  <div class="h">One capture caveat up front</div>
-  <p>The capture pipeline itself went silent once, for about 11 minutes on Saturday
-  (15:03&ndash;15:14 UTC). Any apparent "silence" from a tracker in that window is ours, not
-  theirs. Everything below accounts for it.</p>
-</div>
-
-<h2><span class="n">1.</span>Coverage &amp; gaps</h2>
-<p>Coverage here means RF reception by our network, mapped from the path of every packet:
-a station is credited with a packet when it digipeated it (<code>CALL*</code>) or gated it to
-the internet directly off-air (<code>qAR</code>/<code>qAO</code>). We plot the <em>transmitting</em>
+<h2>Coverage &amp; gaps</h2>
+<p>Coverage is mapped from the path of every packet: a fixed station is credited with a packet
+when it digipeated it (<span class="mono">CALL*</span>) or gated it to the internet directly off
+the air (<span class="mono">qAR</span>/<span class="mono">qAO</span>). We plot the transmitting
 rover's position for each such packet, so each receiver's dot cloud is the real-world footprint
-of what it could hear. Holes in a cloud are that station's coverage gaps.</p>
+of what it could hear; holes in a cloud are that station's coverage gaps. Each of the seven fixed
+stations is drawn in its own colour, with traffic the stations relayed from one another separated
+out so it does not masquerade as field coverage.</p>
 
-<p>Each of the seven fixed stations gets its own color, used for both its reception dots and a
-ring marking its site. Traffic the stations relayed from <em>each other</em> (infrastructure
-beacons) is separated into its own layer so it doesn't masquerade as field coverage, and igates
-are credited only for packets they actually heard on RF, not ones they received over the internet
-from another igate.</p>
-
-<div class="legend">
-  <span><i class="dot" style="background:#e6194b"></i>N1GMC-1</span>
-  <span><i class="dot" style="background:#3cb44b"></i>N1GMC-2</span>
-  <span><i class="dot" style="background:#4363d8"></i>W1FN-9</span>
-  <span><i class="dot" style="background:#f58231"></i>W1FN-5</span>
-  <span><i class="dot" style="background:#911eb4"></i>W1FN-1</span>
-  <span><i class="dot" style="background:#42d4f4"></i>W1FN-3</span>
-  <span><i class="dot" style="background:#469990"></i>WX1NH-10</span>
+<div class="key">
+  <span><i style="background:#e6194b"></i>N1GMC-1</span>
+  <span><i style="background:#3cb44b"></i>N1GMC-2</span>
+  <span><i style="background:#4363d8"></i>W1FN-9</span>
+  <span><i style="background:#f58231"></i>W1FN-5</span>
+  <span><i style="background:#911eb4"></i>W1FN-1</span>
+  <span><i style="background:#42d4f4"></i>W1FN-3</span>
+  <span><i style="background:#469990"></i>WX1NH-10</span>
 </div>
 
-<ul class="files">
-  <li><a href="https://w1hs.com/prouty/2026/gate.php/aprs/digi-coverage.kmz">Digi/igate coverage footprints <small>Google Earth · all 7 stations, color-coded</small></a></li>
-  <li><a href="https://w1hs.com/prouty/2026/gate.php/aprs/capture-gaps.csv">Capture-gap report <small>CSV · pipeline silences</small></a></li>
-</ul>
+<blockquote>
+  <p><strong>Dropouts are mostly coverage, not tracker faults &mdash; but not yet separable.</strong>
+  Every rover logged many multi-minute silences, scattered across the day rather than synchronised.
+  One cluster around 15:02&ndash;15:14 Saturday lines up with the known capture gap and is ours.
+  The rest are not yet attributable to terrain versus tracker: doing that requires cross-referencing
+  this coverage data (did any station hear anyone from that area at that time?), which is a planned
+  refinement, not a finished result.</p>
+</blockquote>
 
-<p>Reading the footprints: solid dots are packets a station heard <em>first-hand</em> (the rover
-itself); faded dots are packets it only got after another digi had already repeated them. A
-station whose cloud is mostly faded was leaning on the network to reach the route rather than
-hearing it directly &mdash; useful for spotting where a single site is carrying more than its share.</p>
-
-<div class="note warn">
-  <div class="h">Dropouts are mostly coverage, not tracker faults</div>
-  <p>Every rover shows many multi-minute stretches where we heard nothing from it (15&ndash;25
-  each, some 30&ndash;60 min). Because the pattern appears on <em>all</em> trackers at once, it
-  reflects terrain and capture coverage along the remote northern route far more than
-  simultaneous tracker failure. Distinguishing a true tracker outage from a dead spot requires
-  cross-referencing the coverage map above &mdash; a dropout where no station heard
-  <em>anyone</em> is a coverage hole, not a tracker fault. (This cross-tag is a planned refinement.)</p>
-</div>
-
-<h2><span class="n">2.</span>Where the rovers went</h2>
-<p>Each rover's track is rebuilt from its own position beacons, exported as a KMZ comparable to an
-aprs.fi export but without the download quota &mdash; and with a dot at every received packet, so
-the <em>spacing</em> of dots along a road shows where coverage was dense (dots close together) versus
-sparse (long gaps between dots on a road the rover clearly drove).</p>
+<h2>Where the rovers went</h2>
+<p>Each rover's track is rebuilt from its own position beacons and exported as a KMZ for Google
+Earth, with a dot at every received packet so the spacing of dots along a road shows where coverage
+was dense versus sparse. Packet counts below are reliable; track distances are approximate and
+inflated somewhat by GPS jitter and the occasional bad fix.</p>
 
 <table>
-  <thead><tr><th>Rover</th><th class="num">Position pkts</th><th class="num">Active</th><th class="num">Track length</th></tr></thead>
+  <thead><tr><th>Rover</th><th>Packets heard</th><th>Approx. track</th></tr></thead>
   <tbody>
-    <tr><td>W1CMS-7</td><td class="num">299</td><td class="num">35.4 h</td><td class="num">347.9 km</td></tr>
-    <tr><td>W1CMS-8</td><td class="num">297</td><td class="num">33.3 h</td><td class="num">472.6 km</td></tr>
-    <tr><td>W1CMS-9</td><td class="num">159</td><td class="num">7.1 h</td><td class="num">169.0 km</td></tr>
-    <tr><td>W1CMS-10</td><td class="num">507</td><td class="num">35.1 h</td><td class="num">294.0 km</td></tr>
-    <tr><td>W1CMS-11</td><td class="num">82</td><td class="num">9.7 h</td><td class="num">204.1 km</td></tr>
-  </tbody>
-</table>
-<p class="sub">"Active" is first-to-last-heard span, not drive time; gaps and overnight idle are
-included. Track length is summed point-to-point and is inflated slightly by GPS jitter and the
-occasional bad fix (see below).</p>
-
-<ul class="files">
-  <li><a href="https://w1hs.com/prouty/2026/gate.php/aprs/rover-tracks.kmz">All rover tracks <small>Google Earth · one layer per rover</small></a></li>
-  <li><a href="https://w1hs.com/prouty/2026/gate.php/aprs/rover-tracks-dots.kmz">Tracks with packet dots <small>Google Earth · coverage-gap view</small></a></li>
-</ul>
-
-<h2><span class="n">3.</span>New tracker functionality &mdash; GPS lock reporting</h2>
-<p>This year's rovers carried Microsat APRS Voyager units, which do something the old trackers
-did not: they announce their own GPS state on the air, sending a status of <strong>"GPS Lock
-Lost"</strong> when they lose the satellites and <strong>"GPS Locked"</strong> when they
-reacquire. That turns a guessing game into a measurement &mdash; we can say exactly when a rover
-went dark, roughly where, and for how long, by pairing the two statuses.</p>
-
-<p>This is a genuinely useful new signal. Previously a frozen position could mean a parked
-vehicle or a dead GPS and we couldn't tell; now the tracker tells us. Across the event the fleet
-reported <strong>27 GPS-loss episodes</strong>, nearly all brief:</p>
-
-<table>
-  <thead><tr><th>Rover</th><th class="num">GPS losses</th><th>Longest</th><th>Pattern</th></tr></thead>
-  <tbody>
-    <tr><td>W1CMS-8</td><td class="num">9</td><td>~2 min</td><td>Scattered all day; many very short (12&ndash;48 s)</td></tr>
-    <tr><td>W1CMS-11</td><td class="num">8</td><td>16 min</td><td>Clustered afternoon, northern high ground (~44.0&ndash;44.1&nbsp;N)</td></tr>
-    <tr><td>W1CMS-7</td><td class="num">6</td><td>~1.4 min</td><td>Tight burst 09:21&ndash;09:29 at one spot</td></tr>
-    <tr><td>W1CMS-9</td><td class="num">2</td><td>12 s</td><td>Two brief, same location</td></tr>
-    <tr><td>W1CMS-10</td><td class="num">2</td><td>48 s</td><td>Both morning, brief</td></tr>
+    <tr><td>W1CMS-1</td><td>75</td><td>194 km</td></tr>
+    <tr><td>W1CMS-3</td><td>226</td><td>332 km</td></tr>
+    <tr><td>W1CMS-4</td><td>90</td><td>164 km</td></tr>
+    <tr><td>W1CMS-7</td><td>299</td><td>348 km</td></tr>
+    <tr><td>W1CMS-8</td><td>297</td><td>473 km</td></tr>
+    <tr><td>W1CMS-9</td><td>159</td><td>169 km</td></tr>
+    <tr><td>W1CMS-10</td><td>507</td><td>294 km</td></tr>
+    <tr><td>W1CMS-11</td><td>82</td><td>204 km</td></tr>
+    <tr><td>W1CMS-12</td><td>448</td><td>283 km</td></tr>
+    <tr><td>W1HS-9</td><td>151</td><td>206 km</td></tr>
+    <tr><td>W1HS-13</td><td>81</td><td>143 km</td></tr>
+    <tr><td>W1TGA-9</td><td>205</td><td>341 km</td></tr>
+    <tr><td>AB1XQ-9</td><td>477</td><td>530 km</td></tr>
+    <tr><td>AC1TS-9</td><td>189</td><td>290 km</td></tr>
+    <tr><td>AE1H-9</td><td>499</td><td>535 km</td></tr>
+    <tr><td>K1EHZ-9</td><td>232</td><td>389 km</td></tr>
+    <tr><td>N0JSR-9</td><td>251</td><td>441 km</td></tr>
+    <tr><td>N1EMF-9</td><td>210</td><td>261 km</td></tr>
+    <tr><td>N1KRB-9</td><td>126</td><td>187 km</td></tr>
+    <tr><td>KC1LFU-1</td><td>437</td><td>203 km</td></tr>
+    <tr><td>KC1LFU-2</td><td>128</td><td>214 km</td></tr>
+    <tr><td>KC1LFU-3</td><td>45</td><td>82 km</td></tr>
+    <tr><td>KC1LFU-11</td><td>101</td><td>102 km</td></tr>
+    <tr><td>NA1T-8</td><td>363</td><td><em>invalid &mdash; see below</em></td></tr>
   </tbody>
 </table>
 
-<p>Two readings stand out. <strong>W1CMS-11</strong>'s losses are the operationally interesting
-ones: four of them ran 8 to 16 minutes and all clustered in the higher-elevation northern section
-of the route in the afternoon &mdash; a clear terrain-shadowing signature, the kind of place where
-a rover would appear stuck on the map while actually still moving. <strong>W1CMS-8</strong> lost
-lock most often (nine times) but almost always recovered within seconds, which reads more like an
-install or antenna issue than terrain (see the telemetry note below). The short, same-spot bursts
-from W1CMS-7 and W1CMS-9 are consistent with a specific shadowed location rather than a tracker
-problem.</p>
+<h2>New tracker functionality &mdash; GPS lock reporting</h2>
+<p>This year's W1CMS rovers carried Microsat APRS Voyager units, which do something the older
+trackers do not: they announce their own GPS state on the air, sending <strong>"GPS Lock Lost"</strong>
+when they lose the satellites and <strong>"GPS Locked"</strong> when they reacquire. That turns a
+guessing game into a measurement &mdash; we can state when a rover went dark, roughly where, and for
+how long, by pairing the two statuses. Only the five Voyagers report this; the rest of the fleet
+cannot, which is why this section covers those five alone.</p>
 
-<div class="note">
-  <div class="h">Why this matters for next year</div>
+<p>Across the event the five Voyagers reported <strong>27 GPS-loss episodes</strong>, nearly all brief:</p>
+
+<table class="plain">
+  <thead><tr><th>Rover</th><th>GPS losses</th><th>Longest</th><th>Pattern</th></tr></thead>
+  <tbody>
+    <tr><td>W1CMS-8</td><td>9</td><td>~2 min</td><td>Scattered all day; most 12&ndash;48&nbsp;s</td></tr>
+    <tr><td>W1CMS-11</td><td>8</td><td>16 min</td><td>Clustered afternoon on the northern high ground (~44.0&ndash;44.1&nbsp;N)</td></tr>
+    <tr><td>W1CMS-7</td><td>6</td><td>~1.3 min</td><td>Tight burst 09:21&ndash;09:29 at one spot</td></tr>
+    <tr><td>W1CMS-9</td><td>2</td><td>12 s</td><td>Two brief, same location</td></tr>
+    <tr><td>W1CMS-10</td><td>2</td><td>~48 s</td><td>Both morning, brief</td></tr>
+  </tbody>
+</table>
+
+<p><strong>W1CMS-11</strong> holds the operationally interesting losses: four ran 8&ndash;16&nbsp;minutes
+and all clustered in the higher-elevation northern section in the afternoon &mdash; a clear
+terrain-shadowing signature, the kind of place a rover appears stuck on the map while still moving.
+<strong>W1CMS-8</strong> lost lock most often (nine times) but almost always recovered within seconds,
+which reads more like an install or antenna issue than terrain &mdash; and its battery trend below
+points the same way.</p>
+
+<blockquote>
   <p>Because the Voyagers self-report, a frozen position <em>without</em> an accompanying
-  "GPS Lock Lost" now points somewhere other than the sky &mdash; a wedged tracker, a timing
-  issue, or a stale buffer &mdash; and is worth investigating separately. The GPS-loss map (below)
-  shows exactly where on the course these dropouts happen, which is the input for deciding where
-  coverage or a fill-in digi would help most.</p>
-</div>
+  "GPS Lock Lost" now points somewhere other than the sky &mdash; a wedged tracker, a timing issue, or
+  a stale buffer. The anomaly map shows exactly where on the course each dropout happened, which is the
+  input for deciding where a fill-in digi would help most next year.</p>
+</blockquote>
 
-<ul class="files">
-  <li><a href="https://w1hs.com/prouty/2026/gate.php/aprs/tracker-anomalies.kmz">Anomaly map <small>Google Earth · GPS-loss spots, freezes, bad fixes</small></a></li>
-  <li><a href="https://w1hs.com/prouty/2026/gate.php/aprs/tracker-events.csv">Event log <small>CSV · every anomaly, timestamped &amp; located</small></a></li>
-</ul>
-
-<h2><span class="n">4.</span>Tracker health &amp; telemetry</h2>
-<p>The Voyagers also beacon analog telemetry (<code>T#</code> packets). Each unit transmits its
-own calibration, so the raw 0&ndash;255 counts decode to real units: channel&nbsp;1 is input
-voltage at <code>0.075&nbsp;V/count</code>, channel&nbsp;2 is temperature
-(<code>0.5&middot;raw&nbsp;&minus;&nbsp;64&nbsp;&deg;C</code>). Battery voltage is the useful one &mdash;
-it tells us whether a rover's electrical system held up.</p>
+<h2>Battery telemetry</h2>
+<p>About half the fleet beacons battery voltage &mdash; the five Voyagers via analog telemetry
+(<span class="mono">T#</span>, channel&nbsp;1 = input voltage at 0.075&nbsp;V/count), and several
+others by putting voltage in their position comments (decoded at ~0.1&nbsp;V/count). The remaining
+rovers (AB1XQ-9, AC1TS-9, AE1H-9, K1EHZ-9, N0JSR-9, N1EMF-9, N1KRB-9, W1CMS-12, W1HS-9, W1HS-13,
+W1TGA-9, NA1T-8) carry no telemetry.</p>
 
 <table>
-  <thead><tr><th>Rover</th><th class="num">Min V</th><th class="num">Max V</th><th class="num">Last V</th><th>Trend</th></tr></thead>
+  <thead><tr><th>Rover</th><th>Min&nbsp;V</th><th>Max&nbsp;V</th><th>Last&nbsp;V</th><th>Trend</th></tr></thead>
   <tbody>
-    <tr><td>W1CMS-7</td><td class="num">13.28</td><td class="num">13.80</td><td class="num">13.35</td><td>steady</td></tr>
-    <tr><td>W1CMS-8</td><td class="num">12.15</td><td class="num">14.92</td><td class="num">12.82</td><td><span style="color:var(--alert)">falling</span></td></tr>
-    <tr><td>W1CMS-9</td><td class="num">12.15</td><td class="num">15.00</td><td class="num">14.55</td><td>steady</td></tr>
-    <tr><td>W1CMS-10</td><td class="num">12.45</td><td class="num">14.70</td><td class="num">13.80</td><td>falling</td></tr>
-    <tr><td>W1CMS-11</td><td class="num">12.22</td><td class="num">14.62</td><td class="num">14.55</td><td>rising</td></tr>
+    <tr><td>W1CMS-7</td><td>13.28</td><td>13.80</td><td>13.35</td><td>steady</td></tr>
+    <tr><td>W1CMS-8</td><td>12.15</td><td>14.92</td><td>12.82</td><td><span class="flag">falling</span></td></tr>
+    <tr><td>W1CMS-9</td><td>12.15</td><td>15.00</td><td>14.55</td><td>steady</td></tr>
+    <tr><td>W1CMS-10</td><td>12.45</td><td>14.70</td><td>13.80</td><td>falling</td></tr>
+    <tr><td>W1CMS-11</td><td>12.22</td><td>14.62</td><td>14.55</td><td>rising</td></tr>
+    <tr><td>W1CMS-1</td><td>12.56</td><td>13.35</td><td>13.05</td><td>steady</td></tr>
+    <tr><td>W1CMS-3</td><td>12.12</td><td>14.32</td><td>14.22</td><td>rising</td></tr>
+    <tr><td>W1CMS-4</td><td>12.63</td><td>14.35</td><td>12.84</td><td>falling</td></tr>
+    <tr><td>KC1LFU-1</td><td>10.83</td><td>14.04</td><td>12.53</td><td><span class="flag">low &mdash; see below</span></td></tr>
+    <tr><td>KC1LFU-2</td><td>12.01</td><td>14.21</td><td>13.81</td><td>falling</td></tr>
+    <tr><td>KC1LFU-3</td><td>12.40</td><td>12.50</td><td>12.50</td><td>steady</td></tr>
+    <tr><td>KC1LFU-11</td><td>13.18</td><td>13.28</td><td>13.28</td><td>steady</td></tr>
   </tbody>
 </table>
 
-<p>The fleet was healthy on power &mdash; everything sat in the normal 12&ndash;15 V band for a
-vehicle system (alternator charging up near 14.5&ndash;15, engine-off resting ~12.5), and nobody
-came close to a low-battery condition. The brief ~12.15&ndash;12.2 V dips on three units are
-ordinary engine-off rest stops, not sags.</p>
+<p>The fleet was healthy on power &mdash; everything sat in the normal 12&ndash;15&nbsp;V band for a
+vehicle system (alternator up near 14.5&ndash;15, engine-off resting ~12.5). Two call-outs:</p>
 
-<div class="note alert">
-  <div class="h">W1CMS-8 is the one to look at</div>
-  <p>It is the only unit trending down (last 12.82 V) with no strong alternator-charging peak,
-  <em>and</em> it had the most GPS losses (nine) and a frozen episode. Low or unstable supply
-  voltage can itself make a tracker's GPS and RF flaky, so the charging/wiring on that install is
-  worth an eyeball before next year &mdash; the voltage trend and the GPS behavior point at the same
-  suspect.</p>
-</div>
+<blockquote>
+  <p><strong>KC1LFU-1</strong> dipped to 10.83&nbsp;V early (08:20) &mdash; the only rover to cross the
+  11.5&nbsp;V low-battery line. It recovered to ~12.5&nbsp;V, so most likely an engine-off dip, but it
+  is the one genuine low-voltage moment in the fleet.</p>
+  <p><strong>W1CMS-8</strong> is the vehicle to check: lowest Voyager minimum (12.15&nbsp;V), trending
+  down with no strong charging peak &mdash; <em>and</em> it had the most GPS losses and a frozen episode.
+  Low or unstable supply voltage can itself make a tracker's GPS and RF flaky, so the charging/wiring on
+  that install is worth an eyeball before next year; the voltage trend and the GPS behaviour point at the
+  same suspect.</p>
+</blockquote>
 
-<ul class="files">
-  <li><a href="https://w1hs.com/prouty/2026/gate.php/aprs/telemetry.csv">Decoded telemetry <small>CSV · per-rover voltage &amp; temp time series</small></a></li>
-</ul>
+<h2>A real GPS fault &mdash; NA1T-8</h2>
+<p>One rover genuinely misbehaved beyond coverage. <strong>NA1T-8</strong> sent null-island
+(0,&nbsp;0) position fixes &mdash; an invalid GPS reading &mdash; and a 10-minute frozen stretch mid-event.
+Its reported 17,571&nbsp;km "distance" and its wild implied speeds are entirely artefacts of the tracker
+jumping between 0,0 and its real position; its true track is short. This is the one tracker whose own
+output, not coverage, was at fault.</p>
 
-<h2 id="tooling"><span class="n">5.</span>Tooling</h2>
-<p>All of the analysis is reproducible from the capture database with a small set of standalone
-Python tools, kept in a git repository (<code>prouty-aprs-tools</code>). They fall into the same
-two buckets as this report &mdash; coverage/mapping and tracker health/telemetry &mdash; plus a
-couple of diagnostics used to work out the Voyagers' status wording and telemetry calibration.</p>
+<h2>Tooling &amp; open items</h2>
+<p>All of the analysis is reproducible from the capture database with a small set of standalone Python
+tools, kept in a git repository. The tools split into the same two buckets as this page &mdash;
+coverage/mapping (<span class="mono">digi_kmz</span>, <span class="mono">prouty_kmz</span>,
+<span class="mono">add_packet_dots</span>, <span class="mono">aprs_gap_check</span>) and tracker
+health/telemetry (<span class="mono">tracker_health</span>, <span class="mono">telemetry_decode</span>)
+&mdash; plus diagnostics used to work out the Voyagers' status wording and telemetry calibration.</p>
 
-<table>
-  <thead><tr><th>Tool</th><th>Purpose</th></tr></thead>
+<table class="plain">
   <tbody>
-    <tr><td><code>digi_kmz.py</code></td><td>Per-digi/igate coverage footprints (color-coded, field vs. infrastructure)</td></tr>
-    <tr><td><code>prouty_kmz.py</code></td><td>Per-rover track KMZ export (aprs.fi-style, no quota)</td></tr>
-    <tr><td><code>add_packet_dots.py</code></td><td>Adds a dot per received packet to any track KMZ</td></tr>
-    <tr><td><code>aprs_gap_check.py</code></td><td>Capture-pipeline gap detector</td></tr>
-    <tr><td><code>tracker_health.py</code></td><td>Anomaly report: GPS loss, freezes, bad fixes, dropouts, low voltage</td></tr>
-    <tr><td><code>telemetry_decode.py</code></td><td>Decodes <code>T#</code> telemetry using each station's own PARM/EQNS</td></tr>
-    <tr><td><code>find_gps_status.py</code>, <code>parsefail_probe.py</code></td><td>Diagnostics</td></tr>
+    <tr><td><strong>JUMP noise &mdash; fixed.</strong></td><td>Absurd "teleport" speeds were same-timestamp duplicate packets from the feed; sub-2-second steps are now suppressed, leaving only genuine bad fixes (e.g. NA1T-8's null-island jumps).</td></tr>
+    <tr><td><strong>DROPOUT classification &mdash; open.</strong></td><td>Auto-tag each silence as <em>tracker fault</em> vs <em>coverage hole</em> by cross-referencing the digi/igate reception data &mdash; if no station heard anyone in that window, it is coverage.</td></tr>
   </tbody>
 </table>
 
-<h2><span class="n">6.</span>Open items</h2>
-<p>Two refinements remain, both about sharpening the numbers rather than new findings:</p>
-<table>
-  <tbody>
-    <tr><td><span class="flag f-jump">JUMP</span></td><td>A few absurd "teleport" speeds (tens of thousands of km/h) are same-timestamp duplicate packets from the stream, not GPS glitches &mdash; suppress sub-2-second steps so only real bad fixes remain.</td></tr>
-    <tr><td><span class="flag f-drop">DROPOUT</span></td><td>Auto-classify each silence as <em>tracker fault</em> vs <em>coverage hole</em> by cross-referencing the digi/igate map &mdash; if no station heard anyone in that window, it's coverage.</td></tr>
-  </tbody>
-</table>
+<p class="source">Source: <span class="mono">aprsis</span> capture stream, 35,134 packets · window
+2026-07-10 00:00 &ndash; 2026-07-11 23:59&nbsp;UTC · explicit 24-rover roster · analysis November&nbsp;2026.</p>
 
 </main>
+</div>
 
-<footer>Prouty 2026 · W1HS · APRS packet-log analysis · maps best viewed in Google Earth</footer>
+<footer class="site-foot"><p>Prouty 2026 · W1HS · APRS packet-log analysis · maps best viewed in Google Earth</p></footer>
 
-</div></body></html>
+</body>
+</html>
