@@ -28,10 +28,11 @@
 
 <h2>Scope</h2>
 <p>Saturday is the Bike Event &mdash; multiple supported routes over different terrain, with the full
-rover fleet out. <strong>23 rovers were assigned</strong> (only the Friday-only Bike Tech Van sat out).
-Coverage is credited to a fixed station when it digipeated a packet (<span class="mono">CALL*</span>)
-or gated it off the air (<span class="mono">qAR</span>/<span class="mono">qAO</span>); the transmitting
-rover's position is plotted for each, so each station's dot cloud is its real reception footprint.</p>
+rover fleet out. <strong>23 rovers were assigned</strong> (only the Friday-only Bike Tech Van sat out).</p>
+<p>"Coverage" means which of our fixed relay sites &mdash; the digipeaters and internet gateways
+(N1GMC-1 and -2, the W1FN sites, and WX1NH-10) &mdash; actually heard each rover. For every packet a
+site passed along, we plot where the rover was when it sent it; the spread of those points shows how
+far that site could reliably hear, and a hole in the spread is ground it was deaf to.</p>
 
 <blockquote>
   <p>One capture caveat: the capture pipeline itself went silent for about 11&nbsp;minutes
