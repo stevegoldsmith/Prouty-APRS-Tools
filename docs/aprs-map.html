@@ -109,7 +109,10 @@ window.addEventListener("error", function (e) {
       if (id && col) colors[id] = kmlColor(col.textContent.trim());
     }
 
-    var overlays = {}, group = L.featureGroup().addTo(map), count = 0;
+    // Compute the extent from the points directly, rather than calling
+    // getBounds() on a group of layerGroups (layerGroups expose no getBounds,
+    // which threw "getLatLng is not a function").
+    var overlays = {}, count = 0, bounds = L.latLngBounds([]);
     var pms = xml.getElementsByTagName("Placemark");
     for (var j = 0; j < pms.length; j++) {
       var pm = pms[j];
@@ -127,13 +130,14 @@ window.addEventListener("error", function (e) {
       L.polyline(pts, { color: color, weight: 3, opacity: 0.9 }).addTo(layer);
       L.circleMarker(pts[pts.length - 1], { radius: 4, color: "#000", weight: 1,
         fillColor: color, fillOpacity: 1 }).bindTooltip(name).addTo(layer);
-      layer.addTo(group);
+      layer.addTo(map);
       overlays[name] = layer;
+      for (var k = 0; k < pts.length; k++) bounds.extend(pts[k]);
       count++;
     }
 
     if (!count) return fail("No tracks found in this overlay.");
-    map.fitBounds(group.getBounds().pad(0.05));
+    if (bounds.isValid()) map.fitBounds(bounds.pad(0.05));
     L.control.layers({ "Satellite": sat, "Map": osm }, overlays, { collapsed: true }).addTo(map);
     document.getElementById("status").textContent = count + " rovers";
   }
