@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>2026 Prouty APRS &mdash; Saturday (Bike Event) &#8211; W1HS</title>
+<link rel="stylesheet" href="/prouty/style.css">
+</head><body>
+<nav class="site-nav" aria-label="Site"><a href="https://w1hs.com/">Home</a><a href="https://w1hs.com/nhares-wlnet/">NH ARES Winlink Wednesday</a><a href="https://w1hs.com/aprs/">APRS</a><a href="https://w1hs.com/w1fn/">Twin State Radio Club</a><a href="https://w1hs.com/the-prouty/">The Prouty</a><a href="http://machamradio.com/">Mac Ham Radio</a></nav>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="eyebrow"><a href="https://w1hs.com/the-prouty/prouty-2026/">Prouty 2026 After Action Records</a></div>
+  <h1>APRS &mdash; Saturday (Bike Event)</h1>
+  <p>Radio coverage, rover tracks and tracker health for the Prouty Bike Event, Saturday July&nbsp;11,
+  2026 &mdash; the multi-route day with several thousand riders. Friday's Ultimate is covered in a
+  <a href="2026-07-10-aprs-friday.html">separate report</a>.</p>
+</header>
+
+<main>
+
+<div class="tiles">
+  <div class="tile"><div class="n">19,065</div><div class="l">packets captured</div></div>
+  <div class="tile"><div class="n">23</div><div class="l">rovers active</div></div>
+  <div class="tile"><div class="n">17</div><div class="l">GPS-loss events (5 Voyagers)</div></div>
+  <div class="tile"><div class="n">11 <span>min</span></div><div class="l">capture-pipeline gap</div></div>
+</div>
+
+<h2>Scope</h2>
+<p>Saturday is the Bike Event &mdash; multiple supported routes over different terrain, with the full
+rover fleet out. <strong>23 of the 24 rovers were active</strong> (only W1HS-13, a Friday Ultimate
+tracker, sat out). Coverage is credited to a fixed station when it digipeated a packet
+(<span class="mono">CALL*</span>) or gated it off the air (<span class="mono">qAR</span>/<span class="mono">qAO</span>);
+the transmitting rover's position is plotted for each, so each station's dot cloud is its real
+reception footprint.</p>
+
+<blockquote>
+  <p>One capture caveat: the capture pipeline itself went silent for about 11&nbsp;minutes
+  (15:03&ndash;15:14&nbsp;UTC). Any apparent rover silence in that window is ours, not the tracker's.</p>
+</blockquote>
+
+<p class="small">Window 2026-07-11 04:00 &ndash; 2026-07-12 04:00&nbsp;UTC (local midnight to midnight,
+EDT). Tracker labels are callsigns; tactical assignments pending.</p>
+
+<h2>Maps</h2>
+<p>Google Earth KMZ, behind the gate. The overlay shows every Saturday rover at once, each a
+colour-coded, toggleable track; per-tracker files hold one rover each with a dot at every received
+packet (gaps in the dots = coverage holes).</p>
+<ul>
+  <li><a href="/prouty/2026/gate.php/aprs/saturday/sat-overlay.kmz">Saturday overlay &mdash; all rovers</a></li>
+  <li>Per-tracker tracks &amp; the anomaly map (GPS-loss, freeze, bad-fix spots) are in the same gate folder.</li>
+</ul>
+
+<h2>Where the rovers went</h2>
+<p>Packet counts are reliable; track distances are approximate and inflated by GPS jitter.</p>
+<table>
+  <thead><tr><th>Rover</th><th>Packets</th><th>Approx. track</th></tr></thead>
+  <tbody>
+    <tr><td>AB1XQ-9</td><td>205</td><td>259 km</td></tr>
+    <tr><td>AC1TS-9</td><td>189</td><td>290 km</td></tr>
+    <tr><td>AE1H-9</td><td>296</td><td>340 km</td></tr>
+    <tr><td>K1EHZ-9</td><td>89</td><td>254 km</td></tr>
+    <tr><td>N0JSR-9</td><td>114</td><td>250 km</td></tr>
+    <tr><td>N1EMF-9</td><td>153</td><td>261 km</td></tr>
+    <tr><td>N1KRB-9</td><td>126</td><td>187 km</td></tr>
+    <tr><td>NA1T-8</td><td>190</td><td>225 km</td></tr>
+    <tr><td>W1CMS-1</td><td>64</td><td>166 km</td></tr>
+    <tr><td>W1CMS-3</td><td>226</td><td>332 km</td></tr>
+    <tr><td>W1CMS-4</td><td>90</td><td>164 km</td></tr>
+    <tr><td>W1CMS-7</td><td>154</td><td>175 km</td></tr>
+    <tr><td>W1CMS-8</td><td>168</td><td>217 km</td></tr>
+    <tr><td>W1CMS-9</td><td>159</td><td>169 km</td></tr>
+    <tr><td>W1CMS-10</td><td>270</td><td>114 km</td></tr>
+    <tr><td>W1CMS-11</td><td>82</td><td>204 km</td></tr>
+    <tr><td>W1CMS-12</td><td>252</td><td>139 km</td></tr>
+    <tr><td>W1HS-9</td><td>141</td><td>197 km</td></tr>
+    <tr><td>W1TGA-9</td><td>102</td><td>196 km</td></tr>
+    <tr><td>KC1LFU-1</td><td>57</td><td>186 km</td></tr>
+    <tr><td>KC1LFU-2</td><td>128</td><td>214 km</td></tr>
+    <tr><td>KC1LFU-3</td><td>45</td><td>82 km</td></tr>
+    <tr><td>KC1LFU-11</td><td>101</td><td>102 km</td></tr>
+  </tbody>
+</table>
+
+<h2>GPS lock reporting (Voyagers)</h2>
+<p>All five Voyagers ran Saturday and reported <strong>17 losses</strong> between them &mdash; and this
+is where the terrain story lives:</p>
+<table class="plain">
+  <thead><tr><th>Voyager</th><th>Losses</th><th>Longest</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>W1CMS-11</td><td>8</td><td>16 min</td><td>Four ran 8&ndash;16&nbsp;min, all afternoon on the northern high ground (~44.0&ndash;44.1&nbsp;N)</td></tr>
+    <tr><td>W1CMS-7</td><td>5</td><td>1.4 min</td><td>Tight burst 09:21&ndash;09:29 at one spot</td></tr>
+    <tr><td>W1CMS-9</td><td>2</td><td>12 s</td><td>Two brief, same location (15:16, 15:22)</td></tr>
+    <tr><td>W1CMS-8</td><td>1</td><td>24 s</td><td>Single (10:07)</td></tr>
+    <tr><td>W1CMS-10</td><td>1</td><td>48 s</td><td>Single (09:21)</td></tr>
+  </tbody>
+</table>
+<p><strong>W1CMS-11</strong> holds the losses worth attention: four lasted 8&ndash;16&nbsp;minutes and all
+fell in the higher-elevation northern section in the afternoon &mdash; terrain shadowing, the kind of
+spot where a rover looks stuck on the map while still moving. The anomaly map shows exactly where, which
+is the input for deciding where a fill-in digi would help next year. W1CMS-7's tight same-spot burst
+points at one specific shadowed location rather than a tracker problem.</p>
+
+<h2>Battery telemetry</h2>
+<p>About half the Saturday fleet beacons voltage &mdash; the five Voyagers via analog telemetry and
+several others via comment voltage. The fleet was healthy on power; nobody crossed the 11.5&nbsp;V line.</p>
+<table>
+  <thead><tr><th>Rover</th><th>Min&nbsp;V</th><th>Max&nbsp;V</th><th>Last&nbsp;V</th><th>Trend</th></tr></thead>
+  <tbody>
+    <tr><td>W1CMS-7</td><td>13.35</td><td>13.80</td><td>13.35</td><td>falling</td></tr>
+    <tr><td>W1CMS-8</td><td>12.15</td><td>12.97</td><td>12.82</td><td><span class="flag">flat, no charge peak</span></td></tr>
+    <tr><td>W1CMS-9</td><td>12.15</td><td>15.00</td><td>14.55</td><td>steady</td></tr>
+    <tr><td>W1CMS-10</td><td>12.45</td><td>14.70</td><td>13.80</td><td>falling</td></tr>
+    <tr><td>W1CMS-11</td><td>12.22</td><td>14.62</td><td>14.55</td><td>rising</td></tr>
+    <tr><td>W1CMS-1</td><td>12.56</td><td>13.35</td><td>13.05</td><td>steady</td></tr>
+    <tr><td>W1CMS-3</td><td>12.12</td><td>14.32</td><td>14.22</td><td>rising</td></tr>
+    <tr><td>W1CMS-4</td><td>12.63</td><td>14.35</td><td>12.84</td><td>falling</td></tr>
+    <tr><td>KC1LFU-1</td><td>11.97</td><td>13.46</td><td>12.47</td><td>steady</td></tr>
+    <tr><td>KC1LFU-2</td><td>12.01</td><td>14.21</td><td>13.81</td><td>falling</td></tr>
+    <tr><td>KC1LFU-3</td><td>12.40</td><td>12.50</td><td>12.50</td><td>steady</td></tr>
+    <tr><td>KC1LFU-11</td><td>13.18</td><td>13.28</td><td>13.28</td><td>steady</td></tr>
+  </tbody>
+</table>
+<blockquote>
+  <p><strong>W1CMS-8</strong> again: its Saturday voltage never rose above 12.97&nbsp;V &mdash; no
+  alternator-charging peak at all, where every other vehicle shows one &mdash; which together with its
+  Friday decline and its GPS/freeze behaviour makes the charging system on that install the clearest
+  single thing to check before next year.</p>
+</blockquote>
+
+<h2>Faults</h2>
+<p><strong>W1CMS-8</strong> froze for 16&nbsp;minutes (15:22&ndash;15:38) near 43.969,&nbsp;&minus;72.116
+while reporting movement. <strong>NA1T-8</strong> had a 10-minute freeze (13:35&ndash;13:45) but, unlike
+Friday, sent no null-island fixes &mdash; it behaved better Saturday.</p>
+
+<h2>Dropouts</h2>
+<p>Every rover logged multi-minute silences, scattered rather than synchronised. The one cluster around
+15:03&ndash;15:14 lines up with the capture-pipeline gap above and is ours. The rest are not yet
+attributable to terrain versus tracker without cross-referencing the coverage data &mdash; a planned step.</p>
+
+<p class="source">Source: <span class="mono">aprsis</span> capture stream, 19,065 packets · window
+2026-07-11 04:00 &ndash; 2026-07-12 04:00&nbsp;UTC · 23 of 24 rovers active.<br>
+Report generated 2026-11-17 17:11&nbsp;UTC.</p>
+
+</main>
+</div>
+
+<footer class="site-foot"><p>Prouty 2026 · W1HS · APRS packet-log analysis · Saturday (Bike Event)</p></footer>
+
+</body>
+</html>
