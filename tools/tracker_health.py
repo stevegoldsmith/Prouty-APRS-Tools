@@ -340,6 +340,9 @@ def main():
     ap.add_argument("--db", type=int, default=0)
     ap.add_argument("--stream", default="aprsis")
     ap.add_argument("--calls", default="", help="explicit tracker list; omit to auto-discover mobiles")
+    ap.add_argument("--roster", default=None,
+                    help="CSV (callsign,tactical) for this day; supplies the tracker list when "
+                         "--calls is omitted, and labels output as 'Tactical (CALLSIGN)'.")
     ap.add_argument("--exclude", default="", help="callsigns to always skip (e.g. known digis)")
     ap.add_argument("--start", type=parse_arg_time, default=None)
     ap.add_argument("--end", type=parse_arg_time, default=None)
@@ -368,7 +371,21 @@ def main():
 
     end = args.end or datetime.now(timezone.utc)
     start = args.start or (end - timedelta(days=2))
+    roster = {}
+    if args.roster:
+        import csv as _csv
+        with open(args.roster, newline="") as f:
+            for row in _csv.DictReader(f):
+                cs = (row.get("callsign") or "").strip().upper()
+                tac = (row.get("tactical") or "").strip()
+                if cs and tac:
+                    roster[cs] = tac
     want = {c.strip().upper() for c in args.calls.split(",") if c.strip()}
+    if not want and roster:
+        want = set(roster.keys())            # roster supplies the tracker list
+    def label(cs):
+        t = roster.get(cs.upper())
+        return f"{t} ({cs})" if t else cs
     exclude = {c.strip().upper() for c in args.exclude.split(",") if c.strip()}
     out_dir = Path(args.out_dir); out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -445,11 +462,13 @@ def main():
     mode = f"explicit list ({len(want)})" if want else "auto-discovered mobiles"
     print(f"Scanned {scanned} entries.  Trackers: {mode}.  "
           f"Window {start:%Y-%m-%d %H:%M}-{end:%Y-%m-%d %H:%M}z\n")
-    print(f"{'tracker':10} {'pkts':>5} {'active':>7} {'dist':>7} {'maxgap':>7}  flags")
+    tac = bool(roster)
+    namew = 28 if tac else 10
+    print(f"{'tracker':{namew}} {'pkts':>5} {'active':>7} {'dist':>7} {'maxgap':>7}  flags")
     for r_ in results:
         gap_txt = f"{r_['max_gap_s']//60}m" if r_["max_gap_s"] else "-"
         flags = ",".join(r_["flags"]) if r_["flags"] else "ok"
-        print(f"{r_['call']:10} {r_['pkts']:>5} {r_['active_min']:>6.0f}m "
+        print(f"{label(r_['call']):{namew}} {r_['pkts']:>5} {r_['active_min']:>6.0f}m "
               f"{r_['dist_km']:>6.1f}k {gap_txt:>7}  {flags}")
 
     # ---- details for flagged trackers ----
@@ -457,7 +476,7 @@ def main():
     if flagged:
         print("\n--- details ---")
     for r_ in flagged:
-        print(f"\n{r_['call']}  [{','.join(r_['flags'])}]")
+        print(f"\n{label(r_['call'])}  [{','.join(r_['flags'])}]")
         for o in r_.get("outages", []):
             where = (f" near {o['loc'][0]:.5f},{o['loc'][1]:.5f}" if o["loc"] else "")
             via = {"status": " (via GPS Locked)", "fix": " (via next fix)"}.get(o.get("rec_src"), "")
@@ -499,14 +518,15 @@ def main():
     summary_csv = out_dir / f"tracker_health_{stamp}.csv"
     with open(summary_csv, "w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["tracker", "pkts", "parsefail", "active_min", "dist_km", "bbox_km",
+        w.writerow(["tracker", "tactical", "pkts", "parsefail", "active_min", "dist_km", "bbox_km",
                     "uniq_pos", "null_fixes", "gps_lost_events", "gps_lost_min",
                     "dropouts", "max_gap_s", "jumps", "frozen",
                     "min_volt", "severity", "flags"])
         for r_ in results:
             outs = r_.get("outages", [])
             lost_min = sum(o["min"] for o in outs if o["min"] is not None)
-            w.writerow([r_["call"], r_["pkts"], r_["parsefail"], r_.get("active_min", 0),
+            w.writerow([r_["call"], roster.get(r_["call"].upper(), ""),
+                        r_["pkts"], r_["parsefail"], r_.get("active_min", 0),
                         r_.get("dist_km", 0), r_.get("bbox_km", 0), r_.get("uniq", 0),
                         r_["nullc"], len(outs), round(lost_min, 1),
                         len(r_["gaps"]), r_["max_gap_s"], len(r_["jumps"]),

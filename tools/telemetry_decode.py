@@ -141,6 +141,9 @@ def main():
     ap.add_argument("--db", type=int, default=0)
     ap.add_argument("--stream", default="aprsis")
     ap.add_argument("--calls", default="", help="restrict to these telemetry sources")
+    ap.add_argument("--roster", default=None,
+                    help="CSV (callsign,tactical) for this day; supplies the source list when "
+                         "--calls is omitted, and labels output as 'Tactical (CALLSIGN)'.")
     ap.add_argument("--start", type=parse_arg_time, default=None)
     ap.add_argument("--end", type=parse_arg_time, default=None)
     ap.add_argument("--min-voltage", type=float, default=None, help="warn if voltage drops below this")
@@ -152,7 +155,21 @@ def main():
 
     end = args.end or datetime.now(timezone.utc)
     start = args.start or (end - timedelta(days=2))
+    roster = {}
+    if args.roster:
+        import csv as _csv
+        with open(args.roster, newline="") as f:
+            for row in _csv.DictReader(f):
+                cs = (row.get("callsign") or "").strip().upper()
+                tac = (row.get("tactical") or "").strip()
+                if cs and tac:
+                    roster[cs] = tac
     want = {c.strip().upper() for c in args.calls.split(",") if c.strip()}
+    if not want and roster:
+        want = set(roster.keys())
+    def label(cs):
+        t = roster.get(cs.upper())
+        return f"{t} ({cs})" if t else cs
     out_dir = Path(args.out_dir); out_dir.mkdir(parents=True, exist_ok=True)
     fallback_eqns = eqns_triples(args.eqns) if args.eqns else None
 
@@ -207,7 +224,7 @@ def main():
     for call in calls:
         samples = tele.get(call, [])
         if not samples:
-            print(f"{call}: no T# telemetry in window\n")
+            print(f"{label(call)}: no T# telemetry in window\n")
             continue
         samples.sort(key=lambda s: s["ts"])
         d = defs.get(call, {})
@@ -263,7 +280,7 @@ def main():
         vch_unit = (unit[vch] if unit and vch < len(unit) else ("V" if emp_scale or eqns else "raw"))
 
         vals = [decode(s["analog"][vch]) for s in samples if s["analog"][vch] is not None]
-        print(f"=== {call} ===")
+        print(f"=== {label(call)} ===")
         print(f"  T# samples: {len(samples)}   "
               f"first {samples[0]['ts']:%m-%d %H:%M}z  last {samples[-1]['ts']:%m-%d %H:%M}z")
         if parm:

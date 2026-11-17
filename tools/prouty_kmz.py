@@ -319,8 +319,9 @@ def main():
     ap.add_argument("--port", type=int, default=6379)
     ap.add_argument("--db", type=int, default=0)
     ap.add_argument("--stream", default="aprsis")
-    ap.add_argument("--calls", required=True,
-                    help="comma-separated callsign-SSIDs, e.g. W1CMS-1,W1CMS-2")
+    ap.add_argument("--calls", default=None,
+                    help="comma-separated callsign-SSIDs. Optional when --roster is given "
+                         "(the roster's callsigns are used).")
     ap.add_argument("--start", type=parse_arg_time, default=None,
                     help="window start ISO-8601 (UTC if no offset); default end-2d")
     ap.add_argument("--end", type=parse_arg_time, default=None,
@@ -340,12 +341,17 @@ def main():
 
     end = args.end or datetime.now(timezone.utc)
     start = args.start or (end - timedelta(days=2))
-    calls = [c.strip().upper() for c in args.calls.split(",") if c.strip()]
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     symbols_dir = Path(args.symbols) if args.symbols else None
 
     roster = load_roster(args.roster) if args.roster else {}
+    if args.calls:
+        calls = [c.strip().upper() for c in args.calls.split(",") if c.strip()]
+    elif roster:
+        calls = list(roster.keys())            # roster supplies the callsign list
+    else:
+        sys.exit("give --calls or --roster")
 
     r = redis.Redis(host=args.host, port=args.port, db=args.db)
     tracks, unparsed = collect_tracks(r, args.stream, start, end, calls)
