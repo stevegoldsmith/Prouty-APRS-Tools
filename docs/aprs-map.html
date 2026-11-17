@@ -81,7 +81,9 @@ window.addEventListener("error", function (e) {
       var p = tok.split(",");
       if (p.length >= 2) {
         var lon = parseFloat(p[0]), lat = parseFloat(p[1]);
-        if (isFinite(lat) && isFinite(lon)) pts.push([lat, lon]);
+        if (!isFinite(lat) || !isFinite(lon)) return;
+        if (Math.abs(lat) < 0.05 && Math.abs(lon) < 0.05) return;  // drop null-island (0,0) fixes
+        pts.push([lat, lon]);
       }
     });
     return pts;
