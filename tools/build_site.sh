@@ -5,11 +5,13 @@
 # the server:
 #
 #   site/html/           -> <base>/html/            report pages + aprs-map.html
+#                                                    + digi-map.html + {fri,sat}-digi.kmz
 #   site/aprs/friday/    -> <base>/aprs/friday/     fri-overlay.kmz + per-tracker + anomaly
 #   site/aprs/saturday/  -> <base>/aprs/saturday/   sat-overlay.kmz + per-tracker + anomaly
 #
-# The timestamped overlay is copied to the stable name the embedded map fetches
-# (fri-overlay.kmz / sat-overlay.kmz); nothing to rename by hand.
+# The timestamped tracker overlay is copied to the stable name the embedded map
+# fetches (fri-overlay.kmz / sat-overlay.kmz); the digi overlay is already stable
+# (fri-digi.kmz / sat-digi.kmz). Nothing to rename by hand.
 #
 # Usage:
 #   bash tools/build_site.sh                 # build AND upload (default)
@@ -43,6 +45,7 @@ mkdir -p "$SITE/html" "$SITE/aprs/friday" "$SITE/aprs/saturday"
 cp docs/2026-07-10-aprs-friday.html \
    docs/2026-07-11-aprs-saturday.html \
    docs/aprs-map.html \
+   docs/digi-map.html \
    "$SITE/html/"
 
 for day in friday saturday; do
@@ -55,6 +58,9 @@ for day in friday saturday; do
   ov=$(ls "$src/${short}-overlay_"*.kmz 2>/dev/null | head -1 || true)
   if [ -n "$ov" ]; then cp "$ov" "$SITE/html/${short}-overlay.kmz"
   else echo "!! no ${short}-overlay in $src -- run prouty_kmz.py --combined for $day"; fi
+  # per-day digipeater/iGate coverage overlay, beside the digi map in html/
+  if [ -f "$src/${short}-digi.kmz" ]; then cp "$src/${short}-digi.kmz" "$SITE/html/${short}-digi.kmz"
+  else echo "!! no ${short}-digi.kmz in $src -- run digi_kmz.py --combined for $day"; fi
   cp "$src"/export_*.kmz "$dst/" 2>/dev/null || true
   cp "$src"/tracker_anomalies_*.kmz "$dst/" 2>/dev/null || true
 done

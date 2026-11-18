@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Prouty digipeater / iGate map</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  html,body{margin:0;height:100%;font-family:system-ui,-apple-system,"Open Sans",sans-serif}
+  #map{position:absolute;inset:0}
+  .mapbar{position:absolute;z-index:1000;top:8px;left:8px;background:#fff;border:1px solid #e3e3e3;
+    border-radius:6px;padding:6px 10px;font-size:13px;color:#1f3a5f;box-shadow:0 1px 4px #0002}
+  .mapbar b{font-weight:600}
+  .mapbar .hint{margin-top:3px;font-size:11px;line-height:1.35;color:#555;max-width:340px}
+  #err{position:absolute;z-index:1001;top:50%;left:50%;transform:translate(-50%,-50%);
+    background:#fff;border:1px solid #e3e3e3;border-radius:8px;padding:16px 20px;max-width:80%;
+    font-size:14px;color:#333;display:none}
+  .leaflet-container{background:#dfe3e8}
+  .leaflet-popup-content{font-size:12px;line-height:1.4}
+  .leaflet-popup-content .mono{font-family:"Fira Code",ui-monospace,monospace;font-size:11px;color:#555}
+</style>
+</head><body>
+<div id="map"></div>
+<div class="mapbar">
+  <div><b id="title">Prouty digipeaters / iGates</b> &middot; <span id="status">loading&hellip;</span></div>
+  <div class="hint">Each colour is one of our stations. A dot is a field packet that station heard off-air
+   &mdash; solid where it heard the tracker first-hand, faded where it relayed a packet another station had
+   already repeated. The dot cloud is that station's reception footprint. Site chatter (our sites relaying
+   each other's beacons) is left out.</div>
+</div>
+<div id="err"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+// surface any error (incl. a CDN script that failed to load) instead of hanging
+window.addEventListener("error", function (e) {
+  var el = document.getElementById("err"), st = document.getElementById("status");
+  if (el) { el.style.display = "block";
+            el.textContent = "Map error: " + ((e && e.message) || "a script failed to load"); }
+  if (st) st.textContent = "error";
+}, true);
+
+(function () {
+  if (typeof L === "undefined" || typeof JSZip === "undefined") {
+    var el = document.getElementById("err"), st = document.getElementById("status");
+    if (el) { el.style.display = "block";
+      el.textContent = "Map libraries did not load (Leaflet / JSZip from cdnjs). " +
+                       "This device or network may be blocking cdnjs.cloudflare.com."; }
+    if (st) st.textContent = "error";
+    return;
+  }
+  // Which day's digi overlay to show. ?day=friday|saturday, or an explicit ?kmz=<url>.
+  var params = new URLSearchParams(location.search);
+  var day = (params.get("day") || "friday").toLowerCase();
+  // overlay sits in the SAME folder as this page (html/), fetched relatively.
+  var DAYS = {
+    friday:   { kmz: "fri-digi.kmz", title: "Who handled the traffic — Friday" },
+    saturday: { kmz: "sat-digi.kmz", title: "Who handled the traffic — Saturday" }
+  };
+  var cfg = DAYS[day] || DAYS.friday;
+  var kmzUrl = params.get("kmz") || cfg.kmz;
+  document.getElementById("title").textContent = cfg.title;
+
+  var map = L.map("map", { preferCanvas: true });
+  var A = "https://server.arcgisonline.com/ArcGIS/rest/services/";
+  var topo = L.tileLayer(A + "World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+    { maxZoom: 19, attribution: "Tiles © Esri" });
+  var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    { maxZoom: 19, attribution: "© OpenStreetMap contributors" });
+  var hybrid = L.layerGroup([
+    L.tileLayer(A + "World_Imagery/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19, attribution: "Imagery © Esri" }),
+    L.tileLayer(A + "Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19 }),
+    L.tileLayer(A + "Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19 })
+  ]);
+  topo.addTo(map);
+  map.setView([43.9, -72.2], 9);
+
+  function fail(msg) {
+    var e = document.getElementById("err");
+    e.innerHTML = msg; e.style.display = "block";
+    document.getElementById("status").textContent = "error";
+  }
+
+  // KML colour is aabbggrr; return {rgb:"#rrggbb", opacity:0..1}.
+  function kmlColor(s) {
+    if (!s || s.length < 8) return { rgb: "#1f3a5f", opacity: 1 };
+    var aa = parseInt(s.substr(0, 2), 16);
+    var bb = s.substr(2, 2), gg = s.substr(4, 2), rr = s.substr(6, 2);
+    return { rgb: "#" + rr + gg + bb, opacity: (isFinite(aa) ? aa : 255) / 255 };
+  }
+
+  // first descendant element by tag name, namespace-agnostic (local name)
+  function first(el, tag) { var n = el.getElementsByTagName(tag); return n.length ? n[0] : null; }
+  function txt(el, tag) { var n = first(el, tag); return n ? n.textContent.trim() : ""; }
+  // direct element children of a given tag name
+  function kids(el, tag) {
+    var out = [];
+    for (var i = 0; i < el.children.length; i++) {
+      var c = el.children[i];
+      if ((c.localName || c.tagName) === tag) out.push(c);
+    }
+    return out;
+  }
+  function pointLatLng(pm) {
+    var pt = first(pm, "Point"); if (!pt) return null;
+    var c = first(pt, "coordinates"); if (!c) return null;
+    var p = c.textContent.trim().split(",");
+    var lon = parseFloat(p[0]), lat = parseFloat(p[1]);
+    if (!isFinite(lat) || !isFinite(lon)) return null;
+    if (Math.abs(lat) < 0.05 && Math.abs(lon) < 0.05) return null; // null-island guard
+    return [lat, lon];
+  }
+
+  // a small "all / none" control that checks/unchecks every station at once
+  function addAllNone(overlays) {
+    var ctl = L.control({ position: "topright" });
+    ctl.onAdd = function () {
+      var d = L.DomUtil.create("div", "leaflet-bar");
+      d.style.cssText = "background:#fff;padding:3px 8px;font:12px/1.4 system-ui,sans-serif";
+      d.innerHTML = 'stations: <a href="#" id="stAll" style="color:#1f3a5f">all</a> / ' +
+                    '<a href="#" id="stNone" style="color:#1f3a5f">none</a>';
+      L.DomEvent.disableClickPropagation(d);
+      return d;
+    };
+    ctl.addTo(map);
+    function setAll(on) {
+      for (var n in overlays) {
+        if (on && !map.hasLayer(overlays[n])) map.addLayer(overlays[n]);
+        else if (!on && map.hasLayer(overlays[n])) map.removeLayer(overlays[n]);
+      }
+    }
+    document.getElementById("stAll").onclick = function (e) { e.preventDefault(); setAll(true); };
+    document.getElementById("stNone").onclick = function (e) { e.preventDefault(); setAll(false); };
+  }
+
+  function render(kmlText) {
+    var xml = new DOMParser().parseFromString(kmlText, "text/xml");
+    if (xml.getElementsByTagName("parsererror").length) return fail("Could not parse the map data.");
+
+    // style id -> colour, from every <Style> (IconStyle colour) in the document
+    var styleCol = {};
+    var styles = xml.getElementsByTagName("Style");
+    for (var i = 0; i < styles.length; i++) {
+      var id = styles[i].getAttribute("id");
+      var col = first(styles[i], "color");
+      if (id && col) styleCol[id] = kmlColor(col.textContent.trim());
+    }
+    function colorOf(styleUrl) {
+      var id = (styleUrl || "").replace("#", "");
+      return styleCol[id] || { rgb: "#1f3a5f", opacity: 1 };
+    }
+
+    // one <Document> per station: its <name> ends with " traffic". (The field /
+    // infrastructure split inside each station is done with <Folder>, below.)
+    var overlays = {}, count = 0, bounds = L.latLngBounds([]);
+    var docs = xml.getElementsByTagName("Document");
+    for (var f = 0; f < docs.length; f++) {
+      var fname = "";
+      var nk = kids(docs[f], "name");
+      if (nk.length) fname = nk[0].textContent.trim();
+      if (!/ traffic$/.test(fname)) continue;
+      var call = fname.replace(/ traffic$/, "");
+
+      var layer = L.layerGroup();
+      var stationColor = null, pts = 0;
+
+      // direct-child placemarks = the home/site marker(s)
+      kids(docs[f], "Placemark").forEach(function (pm) {
+        var ll = pointLatLng(pm); if (!ll) return;
+        var c = colorOf(txt(pm, "styleUrl"));
+        stationColor = stationColor || c.rgb;
+        L.circleMarker(ll, { radius: 7, color: "#000", weight: 1.5,
+          fillColor: c.rgb, fillOpacity: 1 })
+          .bindTooltip(call + " (site)", { permanent: false })
+          .addTo(layer);
+        bounds.extend(ll); pts++;
+      });
+
+      // field-traffic subfolder = the reception footprint
+      kids(docs[f], "Folder").forEach(function (sub) {
+        var sn = kids(sub, "name"); var subName = sn.length ? sn[0].textContent.trim() : "";
+        if (!/^Field traffic/.test(subName)) return;   // skip infrastructure chatter
+        kids(sub, "Placemark").forEach(function (pm) {
+          var ll = pointLatLng(pm); if (!ll) return;
+          var su = txt(pm, "styleUrl");
+          var c = colorOf(su);
+          stationColor = stationColor || c.rgb;
+          var relayed = /relayed/i.test(su);
+          var cm = L.circleMarker(ll, {
+            radius: relayed ? 3 : 4,
+            stroke: false,
+            fillColor: c.rgb,
+            fillOpacity: relayed ? 0.5 : 0.95
+          });
+          var desc = txt(pm, "description");
+          if (desc) cm.bindPopup("<b>" + call + "</b> heard:<br>" +
+            desc.replace(/<span[^>]*>/gi, '<span class="mono">'));
+          cm.addTo(layer);
+          bounds.extend(ll); pts++;
+        });
+      });
+
+      if (!pts) continue;
+      layer.addTo(map);
+      var sw = '<span style="display:inline-block;width:11px;height:11px;border:1px solid rgba(0,0,0,.25);' +
+        'background:' + (stationColor || "#1f3a5f") + ';margin-right:5px;vertical-align:-1px"></span>';
+      overlays[sw + call] = layer;
+      count++;
+    }
+
+    if (!count) return fail("No station traffic found in this overlay.");
+    if (bounds.isValid()) map.fitBounds(bounds.pad(0.05));
+    L.control.layers({ "Topographic": topo, "Streets": osm, "Satellite + labels": hybrid },
+      overlays, { collapsed: true }).addTo(map);
+    addAllNone(overlays);
+    document.getElementById("status").textContent = count + " stations";
+  }
+
+  fetch(kmzUrl, { credentials: "include" })
+    .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.arrayBuffer(); })
+    .then(function (buf) { return JSZip.loadAsync(buf); })
+    .then(function (zip) {
+      var kmlName = Object.keys(zip.files).find(function (n) { return /\.kml$/i.test(n); });
+      if (!kmlName) throw new Error("no KML inside KMZ");
+      return zip.files[kmlName].async("string");
+    })
+    .then(render)
+    .catch(function (e) {
+      fail("Could not load the map (" + e.message + "). If you are not signed in to the " +
+           "Prouty records, open a report page first, then reload.");
+    });
+})();
+</script>
+</body></html>

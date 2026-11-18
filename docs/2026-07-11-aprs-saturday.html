@@ -53,6 +53,24 @@ still include that operator's commute to or from home.</p>
 Per-tracker track files (each with a dot at every received packet) and the anomaly map (GPS-loss,
 freeze and bad-fix locations) are in the gate's <span class="mono">aprs/saturday/</span> folder.</p>
 
+<h2>Coverage &mdash; who handled the traffic</h2>
+<p>The map above shows where trackers were heard. This one shows <em>which of our stations</em> did the
+hearing. Each colour is one of our iGates or digipeaters; a dot is a field packet that station handled
+off-air &mdash; either it was the iGate that put the packet on APRS-IS (credited only for packets heard by
+radio, <span class="mono">qAR</span>/<span class="mono">qAO</span>), or it was a used digipeater in the
+path. The dot is plotted at the <em>tracker's</em> position, so each station's dot cloud is its real
+reception footprint. Toggle stations on and off to see who covered which area.</p>
+<iframe class="map" src="digi-map.html?day=saturday" title="Saturday digipeater / iGate coverage" loading="lazy"></iframe>
+<p class="small"><a href="digi-map.html?day=saturday" target="_blank">Open the coverage map full-screen.</a>
+Solid dots are packets a station heard first-hand; faded dots are ones it relayed after another station had
+already repeated them. Our sites relaying each other's beacons is left out.</p>
+<blockquote>
+  <p>One limit to read this map by: APRS-IS keeps only the first copy of each packet, so a packet heard by
+  several of our receivers appears once, credited to whichever delivered it. This map therefore shows who
+  <em>delivered</em> each packet, which is a floor on who <em>heard</em> it &mdash; not the full set of
+  receivers that copied it. Measuring true overlap would need each station's own raw receive log.</p>
+</blockquote>
+
 <h2>Where the trackers went</h2>
 <p>Packet counts are reliable; track distances are approximate and inflated by GPS jitter.</p>
 <table class="plain">

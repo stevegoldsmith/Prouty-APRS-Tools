@@ -251,6 +251,59 @@ def build_kml(call, home, field, infra, dscale, rscale, hex6):
 </kml>
 """
 
+def _station_doc(call, home, field, infra, dscale, rscale, hex6, sfx):
+    """One station as a <Document>, with style ids suffixed so several stations
+    can live in a single combined KMZ without id collisions."""
+    direct_c = kml_color(hex6, "ff")
+    relayed_c = kml_color(hex6, "70")
+    home_c = kml_color(hex6, "ff")
+    styles = f"""<Style id="direct{sfx}"><IconStyle><color>{direct_c}</color><scale>{dscale}</scale>
+  <Icon><href>files/dot.png</href></Icon></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style>
+<Style id="relayed{sfx}"><IconStyle><color>{relayed_c}</color><scale>{rscale}</scale>
+  <Icon><href>files/dot.png</href></Icon></IconStyle><LabelStyle><scale>0</scale></LabelStyle></Style>
+<Style id="home{sfx}"><IconStyle><color>{home_c}</color><scale>1.5</scale>
+  <Icon><href>files/home.png</href></Icon></IconStyle>
+  <LabelStyle><color>{home_c}</color><scale>0.9</scale></LabelStyle></Style>
+"""
+    home_pm = ""
+    if home:
+        home_pm = (f'<Placemark><name>{esc(call)}</name><styleUrl>#home{sfx}</styleUrl>'
+                   f'<description><![CDATA[Site position (own beacon)<br/>'
+                   f'{home["ts"]:%Y-%m-%d %H:%M:%S}z]]></description>'
+                   f'<Point><coordinates>{home["lon"]:.5f},{home["lat"]:.5f},0'
+                   f'</coordinates></Point></Placemark>')
+    # the pm strings carry #direct / #relayed; suffix them to this station's ids
+    def sx(pms):
+        return [pm.replace("#direct</styleUrl>", f"#direct{sfx}</styleUrl>")
+                  .replace("#relayed</styleUrl>", f"#relayed{sfx}</styleUrl>") for pm in pms]
+    field_folder = (f'<Folder><name>Field traffic handled ({len(field)})</name>\n'
+                    + "\n".join(sx(field)) + "\n</Folder>")
+    infra_folder = (f'<Folder><name>Infrastructure beacons handled ({len(infra)})</name>'
+                    f'<visibility>0</visibility>\n' + "\n".join(sx(infra)) + "\n</Folder>")
+    return (f'<Document><name>{esc(call)} traffic</name>\n{styles}{home_pm}\n'
+            f'{field_folder}\n{infra_folder}\n</Document>')
+
+def build_combined_kml(calls, home, field, infra, dscale, rscale, color_of, title):
+    """All stations in one KMZ: an outer Document/Folder wrapping one <Document>
+    per station (suffixed styles, one hue each), matching the per-day map's parser."""
+    docs = []
+    for i, call in enumerate(calls):
+        if not field[call] and not infra[call] and home[call] is None:
+            continue
+        _, chex = color_of[call]
+        docs.append(_station_doc(call, home[call], field[call], infra[call],
+                                 dscale, rscale, chex, str(i)))
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>{esc(title)}</name>
+<Folder><name>{esc(title)}</name>
+{chr(10).join(docs)}
+</Folder>
+</Document>
+</kml>
+"""
+
 def write_kmz(path, kml):
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr(f"{path.stem}.kml", kml)
@@ -272,6 +325,13 @@ def main():
     ap.add_argument("--start", type=parse_arg_time, default=None, help="ISO-8601, UTC if no offset")
     ap.add_argument("--end", type=parse_arg_time, default=None)
     ap.add_argument("--out-dir", default="digi_kmz")
+    ap.add_argument("--combined", action="store_true",
+                    help="write ONE KMZ with all stations as toggleable layers "
+                         "(for the per-day web map) instead of one file per station")
+    ap.add_argument("--combined-name", default="prouty-digi",
+                    help="basename (no extension) for the --combined KMZ")
+    ap.add_argument("--title", default="Prouty digipeater / iGate performance",
+                    help="title shown inside the combined KMZ")
     ap.add_argument("--include-net", action="store_true",
                     help="also credit igates for net-sourced packets (qAS/qAC/qAI), not just RF")
     ap.add_argument("--direct-only", action="store_true",
@@ -337,21 +397,33 @@ def main():
     stamp = f"{start:%Y%m%d_%H%M%S}_{end:%Y%m%d_%H%M%S}"
     print(f"Scanned {scanned} stream entries.  "
           f"igate credit: {'RF+net' if args.include_net else 'RF only (qAR/qAO)'}\n")
-    print(f"{'station':10} {'color':8} {'field':>6} {'infra':>6} {'direct':>7} {'relayed':>8} {'home':>5}   file")
-    made = 0
+    print(f"{'station':10} {'color':8} {'field':>6} {'infra':>6} {'direct':>7} {'relayed':>8} {'home':>5}")
     for call in calls:
-        cname, chex = color_of[call]
+        cname, _ = color_of[call]
         if not field[call] and not infra[call] and home[call] is None:
-            print(f"{call:10} {cname:8} {'-':>6} {'-':>6} {'-':>7} {'-':>8} {'no':>5}   (nothing -- skipped)")
+            print(f"{call:10} {cname:8} {'-':>6} {'-':>6} {'-':>7} {'-':>8} {'no':>5}   (nothing)")
             continue
-        kml = build_kml(call, home[call], field[call], infra[call],
-                        args.direct_scale, args.relayed_scale, chex)
-        out = out_dir / f"digi_{call}_{stamp}.kmz"
-        write_kmz(out, kml)
-        made += 1
         print(f"{call:10} {cname:8} {len(field[call]):>6} {len(infra[call]):>6} "
-              f"{n_dir[call]:>7} {n_rel[call]:>8} {'yes' if home[call] else 'no':>5}   {out.name}")
-    print(f"\n{made} KMZ(s) written to {out_dir}")
+              f"{n_dir[call]:>7} {n_rel[call]:>8} {'yes' if home[call] else 'no':>5}")
+
+    if args.combined:
+        kml = build_combined_kml(calls, home, field, infra,
+                                 args.direct_scale, args.relayed_scale, color_of, args.title)
+        out = out_dir / f"{args.combined_name}.kmz"
+        write_kmz(out, kml)
+        print(f"\nCombined KMZ written to {out}")
+    else:
+        made = 0
+        for call in calls:
+            _, chex = color_of[call]
+            if not field[call] and not infra[call] and home[call] is None:
+                continue
+            kml = build_kml(call, home[call], field[call], infra[call],
+                            args.direct_scale, args.relayed_scale, chex)
+            out = out_dir / f"digi_{call}_{stamp}.kmz"
+            write_kmz(out, kml)
+            made += 1
+        print(f"\n{made} per-station KMZ(s) written to {out_dir}")
 
 if __name__ == "__main__":
     main()

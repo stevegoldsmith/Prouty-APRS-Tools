@@ -15,7 +15,7 @@ The tools fall into two buckets, plus diagnostics.
 ### Coverage & mapping
 | Tool | Purpose |
 |------|---------|
-| `digi_kmz.py` | Per-digipeater/igate coverage footprints as KMZ. One color per station (dots + home ring), field traffic separated from infrastructure beacons, igates credited only for RF-heard packets (`qAR`/`qAO`). |
+| `digi_kmz.py` | Per-digipeater/igate coverage footprints as KMZ. One color per station (dots + home ring), field traffic separated from infrastructure beacons, igates credited only for RF-heard packets (`qAR`/`qAO`). `--combined` writes one KMZ with all stations as toggleable layers for the per-day coverage web map (`docs/digi-map.html`). |
 | `prouty_kmz.py` | Per-callsign track export, aprs.fi-style KMZ, straight from the capture DB (no download quota). |
 | `add_packet_dots.py` | Post-processes any track KMZ to add a dot at every received packet, so gaps in the dots reveal coverage holes. Dot icon is embedded so it renders in Google Earth. |
 | `aprs_gap_check.py` | Finds gaps in the *capture pipeline itself* (so you don't mistake a capture outage for a coverage hole). |
@@ -74,6 +74,11 @@ bash tools/run_day.sh friday      # 05:30–15:19 EDT, config/friday.csv
 bash tools/run_day.sh saturday    # 05:30–16:10 EDT, config/saturday.csv
 bash tools/build_site.sh          # assemble + upload the gate site
 ```
+
+Each `run_day.sh` also builds that day's digipeater/iGate coverage KMZ
+(`<short>-digi.kmz`) from the station list at the top of the script
+(`STATIONS=`), for the per-day coverage map (`docs/digi-map.html`). Edit that
+list if your infrastructure changes.
 
 Event windows (from the net logs) live in `tools/run_day.sh`; edit them there
 if they change. To run a tool directly, each takes `--roster`, `--start`,
