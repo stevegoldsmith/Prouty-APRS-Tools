@@ -1,34 +1,34 @@
-Scanned 19065 entries.  Trackers: explicit list (23).  Window 2026-07-11 04:00-2026-07-12 04:00z
+Scanned 12480 entries.  Trackers: explicit list (23).  Window 2026-07-11 09:30-2026-07-11 20:10z
 
 tracker                       pkts  active    dist  maxgap  flags
-Trouble 2 (North) (W1CMS-11)    82    584m  204.1k     62m  GPSLOST,JUMP,DROPOUT
-Rover 4-6 (AB1XQ-9)            205    744m  259.1k    109m  JUMP,DROPOUT
-Recovery 3 (North) (W1CMS-7)   154    630m  175.2k     30m  GPSLOST,DROPOUT
-Trouble 1 (South) (AE1H-9)     296    768m  340.2k     12m  JUMP,DROPOUT
-Rover SF-1 (W1HS-9)            141    807m  197.0k     85m  JUMP,DROPOUT
+Trouble 2 (North) (W1CMS-11)    77    504m  185.5k     41m  GPSLOST,JUMP,DROPOUT
+Rover 4-6 (AB1XQ-9)            165    639m  171.1k    109m  JUMP,DROPOUT
+Trouble 1 (South) (AE1H-9)     240    639m  287.6k     12m  JUMP,DROPOUT
 Rover 5-6 (N0JSR-9)            114    436m  249.6k     33m  JUMP,DROPOUT
 Rover 6-5 (KC1LFU-1)            57    594m  185.5k     84m  DROPOUT
-Rover 1-7 (W1CMS-3)            226    668m  331.7k     14m  JUMP,DROPOUT
+Rover 1-7 (W1CMS-3)            215    636m  317.5k     14m  JUMP,DROPOUT
 Rover 4-5 (K1EHZ-9)             89    558m  253.5k     54m  JUMP,DROPOUT
+Rover SF-1 (W1HS-9)            137    564m  193.7k     82m  JUMP,DROPOUT
 Rover 6-6 (W1CMS-1)             64    512m  165.6k     45m  DROPOUT
 Rover 2-3 (W1TGA-9)            102    428m  196.3k     42m  JUMP,DROPOUT
-Rover 3-4 (N1EMF-9)            153    631m  260.5k     31m  JUMP,DROPOUT
+Rover 3-4 (N1EMF-9)            143    609m  243.6k     31m  JUMP,DROPOUT
 Gravel Rover 4 (W1CMS-9)       159    426m  169.0k     22m  GPSLOST,JUMP,DROPOUT
-Recovery 2 (East) (AC1TS-9)    189    542m  289.5k     20m  JUMP,DROPOUT
-Med 2 (W1CMS-4)                 90    560m  164.1k     49m  DROPOUT
-Shuttle Bus (W1CMS-12)         252    614m  138.8k     14m  JUMP,DROPOUT
-Safety 1 (NA1T-8)              190    745m  225.1k    143m  FROZEN,DROPOUT
-Med 1 (W1CMS-10)               270    658m  114.3k     13m  GPSLOST,DROPOUT
+Recovery 2 (East) (AC1TS-9)    184    522m  258.2k     20m  JUMP,DROPOUT
+Med 2 (W1CMS-4)                 86    540m  164.1k     49m  DROPOUT
+Recovery 3 (North) (W1CMS-7)   154    630m  175.2k     30m  DROPOUT
+Shuttle Bus (W1CMS-12)         249    608m  138.8k     14m  JUMP,DROPOUT
+Safety 1 (NA1T-8)              176    563m  164.4k     98m  FROZEN,DROPOUT
 Rover 6-7 (W1CMS-8)            168    454m  217.0k       -  GPSLOST,FROZEN
 Gravel Rover 2 (KC1LFU-3)       45    338m   81.6k     60m  DROPOUT
 Rover 1-2 (N1KRB-9)            126    444m  186.9k     20m  JUMP,DROPOUT
 Gravel Rover 3 (KC1LFU-11)     101    380m  101.8k     14m  DROPOUT
 Gravel Rover 1 (KC1LFU-2)      128    574m  213.9k     25m  DROPOUT
+Med 1 (W1CMS-10)               261    638m   99.3k     13m  DROPOUT
 
 --- details ---
 
 Trouble 2 (North) (W1CMS-11)  [GPSLOST,JUMP,DROPOUT]
-  GPSLOST: GPS lock lost 10:21:20z near 43.70367,-72.28217, reacquired after 12s (via GPS Locked)
+  GPSLOST: GPS lock lost 10:21:20z, reacquired after 12s (via GPS Locked)
   GPSLOST: GPS lock lost 13:22:46z near 44.03217,-72.01500, reacquired after 18s (via GPS Locked)
   GPSLOST: GPS lock lost 14:17:49z near 43.98133,-72.12033, reacquired after 30s (via next fix)
   GPSLOST: GPS lock lost 16:00:08z near 44.14600,-72.03783, reacquired after 8.2min (via next fix)
@@ -37,52 +37,31 @@ Trouble 2 (North) (W1CMS-11)  [GPSLOST,JUMP,DROPOUT]
   GPSLOST: GPS lock lost 17:18:24z near 43.98850,-72.07900, reacquired after 16.0min (via next fix)
   GPSLOST: GPS lock lost 18:08:56z near 43.96867,-72.11617, reacquired after 6s (via GPS Locked)
   JUMP (jump): 2.11km in 4s = 1807km/h at 10:35:12z
-  DROPOUT: 62m00s silent 09:20-10:22z
   DROPOUT: 12m00s silent 10:56-11:08z
   DROPOUT: 41m26s silent 11:16-11:58z
-  ... and 13 more dropouts
+  DROPOUT: 14m00s silent 12:06-12:20z
+  ... and 12 more dropouts
 
 Rover 4-6 (AB1XQ-9)  [JUMP,DROPOUT]
-  JUMP (jump): 6.37km in 70s = 326km/h at 09:15:55z
-  JUMP (jump): 7.35km in 49s = 533km/h at 09:16:44z
   JUMP (jump): 4.26km in 41s = 366km/h at 10:07:24z
   JUMP (jump): 2.92km in 28s = 366km/h at 10:13:32z
   JUMP (jump): 2.19km in 34s = 229km/h at 10:35:44z
-  ... and 2 more jumps
+  JUMP (jump): 1.15km in 11s = 346km/h at 16:22:40z
+  JUMP (jump): 2.05km in 13s = 527km/h at 17:55:13z
   DROPOUT: 18m15s silent 10:48-11:06z
   DROPOUT: 24m37s silent 14:30-14:54z
   DROPOUT: 18m25s silent 14:56-15:15z
-  ... and 4 more dropouts
-
-Recovery 3 (North) (W1CMS-7)  [GPSLOST,DROPOUT]
-  GPSLOST: GPS lock lost 09:21:18z, reacquired after 1.3min (via GPS Locked) (2 status beacons)
-  GPSLOST: GPS lock lost 09:23:16z, reacquired after 18s (via GPS Locked)
-  GPSLOST: GPS lock lost 09:24:37z, reacquired after 1.4min (via GPS Locked) (2 status beacons)
-  GPSLOST: GPS lock lost 09:26:09z, reacquired after 54s (via GPS Locked) (2 status beacons)
-  GPSLOST: GPS lock lost 09:28:59z, reacquired after 6s (via GPS Locked)
-  DROPOUT: 16m11s silent 10:42-10:58z
-  DROPOUT: 15m59s silent 12:34-12:50z
-  DROPOUT: 20m00s silent 15:02-15:22z
-  ... and 5 more dropouts
+  ... and 3 more dropouts
 
 Trouble 1 (South) (AE1H-9)  [JUMP,DROPOUT]
-  JUMP (jump): 3.43km in 75s = 164km/h at 09:12:14z
-  JUMP (jump): 2.12km in 35s = 213km/h at 09:14:14z
   JUMP (spike): 7.27km in 66s = 395km/h at 10:19:11z
   JUMP (jump): 7.27km in 77s = 335km/h at 10:20:29z
   JUMP (spike): 1.96km in 30s = 234km/h at 10:35:09z
-  ... and 3 more jumps
+  JUMP (jump): 1.96km in 3s = 1842km/h at 10:35:12z
+  JUMP (jump): 1.48km in 18s = 294km/h at 10:46:47z
+  ... and 1 more jumps
   DROPOUT: 12m05s silent 13:04-13:16z
   DROPOUT: 12m48s silent 15:01-15:14z
-
-Rover SF-1 (W1HS-9)  [JUMP,DROPOUT]
-  JUMP (jump): 2.14km in 39s = 195km/h at 10:20:57z
-  JUMP (spike): 7.19km in 92s = 279km/h at 16:22:28z
-  JUMP (jump): 7.19km in 25s = 1025km/h at 16:22:54z
-  DROPOUT: 83m38s silent 08:55-10:18z
-  DROPOUT: 12m57s silent 10:31-10:44z
-  DROPOUT: 50m46s silent 12:14-13:05z
-  ... and 8 more dropouts
 
 Rover 5-6 (N0JSR-9)  [JUMP,DROPOUT]
   JUMP (jump): 1.56km in 8s = 663km/h at 10:35:08z
@@ -115,6 +94,15 @@ Rover 4-5 (K1EHZ-9)  [JUMP,DROPOUT]
   DROPOUT: 29m50s silent 11:17-11:47z
   DROPOUT: 12m19s silent 12:27-12:40z
   ... and 10 more dropouts
+
+Rover SF-1 (W1HS-9)  [JUMP,DROPOUT]
+  JUMP (jump): 2.14km in 39s = 195km/h at 10:20:57z
+  JUMP (spike): 7.19km in 92s = 279km/h at 16:22:28z
+  JUMP (jump): 7.19km in 25s = 1025km/h at 16:22:54z
+  DROPOUT: 12m57s silent 10:31-10:44z
+  DROPOUT: 50m46s silent 12:14-13:05z
+  DROPOUT: 35m46s silent 13:59-14:35z
+  ... and 5 more dropouts
 
 Rover 6-6 (W1CMS-1)  [DROPOUT]
   DROPOUT: 13m59s silent 10:20-10:34z
@@ -159,6 +147,12 @@ Med 2 (W1CMS-4)  [DROPOUT]
   DROPOUT: 16m01s silent 13:14-13:30z
   ... and 7 more dropouts
 
+Recovery 3 (North) (W1CMS-7)  [DROPOUT]
+  DROPOUT: 16m11s silent 10:42-10:58z
+  DROPOUT: 15m59s silent 12:34-12:50z
+  DROPOUT: 20m00s silent 15:02-15:22z
+  ... and 5 more dropouts
+
 Shuttle Bus (W1CMS-12)  [JUMP,DROPOUT]
   JUMP (spike): 4.36km in 37s = 415km/h at 16:22:28z
   JUMP (jump): 4.25km in 82s = 185km/h at 16:23:51z
@@ -170,12 +164,7 @@ Safety 1 (NA1T-8)  [FROZEN,DROPOUT]
   DROPOUT: 98m33s silent 11:45-13:23z
   DROPOUT: 28m07s silent 14:03-14:32z
   DROPOUT: 18m32s silent 14:34-14:52z
-  ... and 2 more dropouts
-
-Med 1 (W1CMS-10)  [GPSLOST,DROPOUT]
-  GPSLOST: GPS lock lost 09:21:12z, reacquired after 48s (via GPS Locked)
-  DROPOUT: 13m58s silent 13:14-13:28z
-  DROPOUT: 12m02s silent 15:02-15:14z
+  ... and 1 more dropouts
 
 Rover 6-7 (W1CMS-8)  [GPSLOST,FROZEN]
   GPSLOST: GPS lock lost 10:07:27z, reacquired after 24s (via GPS Locked)
@@ -203,6 +192,10 @@ Gravel Rover 1 (KC1LFU-2)  [DROPOUT]
   DROPOUT: 16m01s silent 14:58-15:14z
   DROPOUT: 17m59s silent 18:38-18:56z
 
-Summary CSV -> output/2026/saturday/tracker_health_20260711_20260712.csv
-Events  CSV -> output/2026/saturday/tracker_events_20260711_20260712.csv
-  anomaly KMZ -> output/2026/saturday/tracker_anomalies_20260711_20260712.kmz
+Med 1 (W1CMS-10)  [DROPOUT]
+  DROPOUT: 13m58s silent 13:14-13:28z
+  DROPOUT: 12m02s silent 15:02-15:14z
+
+Summary CSV -> output/2026/saturday/tracker_health_20260711_20260711.csv
+Events  CSV -> output/2026/saturday/tracker_events_20260711_20260711.csv
+  anomaly KMZ -> output/2026/saturday/tracker_anomalies_20260711_20260711.kmz

@@ -1,41 +1,38 @@
-Scanned 15763 entries.  Trackers: explicit list (11).  Window 2026-07-10 04:00-2026-07-11 04:00z
+Scanned 7589 entries.  Trackers: explicit list (11).  Window 2026-07-10 09:30-2026-07-10 19:19z
 
 tracker                       pkts  active    dist  maxgap  flags
-Safety (W1CMS-8)               129    818m  242.4k    169m  GPSLOST,JUMP,DROPOUT
-Logistics Coord (N0JSR-9)      132    591m  186.7k     34m  FROZEN,DROPOUT
+Safety (W1CMS-8)               111    572m  202.9k     94m  GPSLOST,JUMP,DROPOUT
+Logistics Coord (N0JSR-9)      125    550m  182.5k     34m  FROZEN,DROPOUT
 Bike Tech Van (W1HS-13)         81    426m  142.5k     54m  JUMP,DROPOUT
-Med 1 (W1CMS-10)               237    714m  176.7k     37m  GPSLOST,FROZEN,DROPOUT
-Lead Vehicle (NA1T-8)          160    461m 8752.1k     15m  NOFIX,JUMP,DROPOUT
-Rover 3 (Recovery) (K1EHZ-9)   143    626m  129.4k     49m  DROPOUT
-Rover 1 (W1CMS-7)              145    510m  172.6k     33m  GPSLOST,DROPOUT
-Rover 4 (Sweep) (AB1XQ-9)      272    809m  256.3k     28m  JUMP,DROPOUT
-Trouble (AE1H-9)               203    638m  190.8k     75m  DROPOUT
+Med 1 (W1CMS-10)               179    588m  146.3k     37m  FROZEN,DROPOUT
+Rover 3 (Recovery) (K1EHZ-9)   121    553m  120.5k     49m  DROPOUT
+Rover 1 (W1CMS-7)              125    458m  166.1k     33m  DROPOUT
+Trouble (AE1H-9)               186    521m  164.1k     42m  DROPOUT
 Rover 2 (W1TGA-9)              102    437m  138.8k     56m  DROPOUT
+Rover 4 (Sweep) (AB1XQ-9)      213    586m  161.9k     20m  JUMP,DROPOUT
 Recovery Bus (W1CMS-12)        196    550m  141.0k     16m  DROPOUT
+Lead Vehicle (NA1T-8)          148    441m  157.4k     15m  DROPOUT
 
 --- details ---
 
 Safety (W1CMS-8)  [GPSLOST,JUMP,DROPOUT]
-  GPSLOST: GPS lock lost 09:06:13z near 43.70367,-72.28783, reacquired after 1.2min (via GPS Locked)
-  GPSLOST: GPS lock lost 09:27:46z near 43.71650,-72.27533, reacquired after 12s (via GPS Locked)
   GPSLOST: GPS lock lost 09:56:26z near 43.70367,-72.28933, reacquired after 2.0min (via next fix)
   GPSLOST: GPS lock lost 14:48:05z near 43.72217,-72.26950, reacquired after 24s (via GPS Locked)
   GPSLOST: GPS lock lost 15:21:20z near 43.71233,-72.41700, reacquired after 48s (via GPS Locked)
   GPSLOST: GPS lock lost 18:24:27z near 43.71233,-72.41683, reacquired after 2.0min (via next fix)
   GPSLOST: GPS lock lost 18:57:15z near 43.70700,-72.28667, reacquired after 42s (via GPS Locked)
-  GPSLOST: GPS lock lost 21:53:50z near 43.72367,-72.27000, reacquired after 12s (via GPS Locked)
   JUMP (jump): 1.93km in 33s = 205km/h at 10:36:28z
-  DROPOUT: 23m59s silent 09:08-09:32z
   DROPOUT: 26m00s silent 09:32-09:58z
   DROPOUT: 36m01s silent 12:10-12:46z
-  ... and 6 more dropouts
+  DROPOUT: 12m01s silent 13:12-13:24z
+  ... and 4 more dropouts
 
 Logistics Coord (N0JSR-9)  [FROZEN,DROPOUT]
   FROZEN: stuck 4 fixes / 30.4min at 43.71233,-72.41650 while reporting up to 15 km/h (17:46-18:17z)
-  DROPOUT: 15m03s silent 09:22-09:37z
   DROPOUT: 20m07s silent 09:37-09:57z
   DROPOUT: 22m30s silent 09:57-10:19z
-  ... and 11 more dropouts
+  DROPOUT: 15m04s silent 11:24-11:39z
+  ... and 10 more dropouts
 
 Bike Tech Van (W1HS-13)  [JUMP,DROPOUT]
   JUMP (jump): 1.7km in 32s = 188km/h at 10:50:34z
@@ -45,45 +42,30 @@ Bike Tech Van (W1HS-13)  [JUMP,DROPOUT]
   DROPOUT: 12m04s silent 13:17-13:29z
   ... and 5 more dropouts
 
-Med 1 (W1CMS-10)  [GPSLOST,FROZEN,DROPOUT]
-  GPSLOST: GPS lock lost 09:12:19z, reacquired after 42s (via GPS Locked)
+Med 1 (W1CMS-10)  [FROZEN,DROPOUT]
   FROZEN: stuck 4 fixes / 8.0min at 43.72850,-72.61867 while reporting up to 9 km/h (15:40-15:48z)
   DROPOUT: 15m59s silent 14:22-14:38z
   DROPOUT: 14m00s silent 14:48-15:02z
   DROPOUT: 37m59s silent 15:02-15:40z
   ... and 3 more dropouts
 
-Lead Vehicle (NA1T-8)  [NOFIX,JUMP,DROPOUT]
-  NOFIX: 2 packet(s) at ~0,0 (invalid GPS)
-  JUMP (jump): 8594.73km in 85s = 363573km/h at 09:13:32z
-  DROPOUT: 15m59s silent 13:00-13:16z
-  DROPOUT: 14m09s silent 13:38-13:52z
-
 Rover 3 (Recovery) (K1EHZ-9)  [DROPOUT]
-  DROPOUT: 13m13s silent 08:43-08:57z
   DROPOUT: 26m28s silent 13:41-14:08z
   DROPOUT: 16m26s silent 14:18-14:34z
-  ... and 6 more dropouts
+  DROPOUT: 13m12s silent 14:34-14:47z
+  ... and 5 more dropouts
 
-Rover 1 (W1CMS-7)  [GPSLOST,DROPOUT]
-  GPSLOST: GPS lock lost 08:37:34z, reacquired after 24s (via GPS Locked)
+Rover 1 (W1CMS-7)  [DROPOUT]
   DROPOUT: 12m00s silent 11:00-11:12z
   DROPOUT: 14m01s silent 12:18-12:32z
   DROPOUT: 16m00s silent 12:42-12:58z
-  ... and 3 more dropouts
-
-Rover 4 (Sweep) (AB1XQ-9)  [JUMP,DROPOUT]
-  JUMP (jump): 0.56km in 5s = 381km/h at 11:31:12z
-  DROPOUT: 16m00s silent 15:13-15:29z
-  DROPOUT: 20m03s silent 15:55-16:15z
-  DROPOUT: 27m59s silent 19:24-19:52z
   ... and 3 more dropouts
 
 Trouble (AE1H-9)  [DROPOUT]
   DROPOUT: 12m06s silent 09:57-10:09z
   DROPOUT: 12m08s silent 12:39-12:51z
   DROPOUT: 20m11s silent 12:51-13:11z
-  ... and 3 more dropouts
+  ... and 2 more dropouts
 
 Rover 2 (W1TGA-9)  [DROPOUT]
   DROPOUT: 14m15s silent 10:41-10:56z
@@ -91,11 +73,20 @@ Rover 2 (W1TGA-9)  [DROPOUT]
   DROPOUT: 34m23s silent 13:44-14:18z
   ... and 2 more dropouts
 
+Rover 4 (Sweep) (AB1XQ-9)  [JUMP,DROPOUT]
+  JUMP (jump): 0.56km in 5s = 381km/h at 11:31:12z
+  DROPOUT: 16m00s silent 15:13-15:29z
+  DROPOUT: 20m03s silent 15:55-16:15z
+
 Recovery Bus (W1CMS-12)  [DROPOUT]
   DROPOUT: 14m02s silent 15:13-15:27z
   DROPOUT: 14m14s silent 15:46-16:00z
   DROPOUT: 16m02s silent 16:10-16:26z
 
-Summary CSV -> output/2026/friday/tracker_health_20260710_20260711.csv
-Events  CSV -> output/2026/friday/tracker_events_20260710_20260711.csv
-  anomaly KMZ -> output/2026/friday/tracker_anomalies_20260710_20260711.kmz
+Lead Vehicle (NA1T-8)  [DROPOUT]
+  DROPOUT: 15m59s silent 13:00-13:16z
+  DROPOUT: 14m09s silent 13:38-13:52z
+
+Summary CSV -> output/2026/friday/tracker_health_20260710_20260710.csv
+Events  CSV -> output/2026/friday/tracker_events_20260710_20260710.csv
+  anomaly KMZ -> output/2026/friday/tracker_anomalies_20260710_20260710.kmz

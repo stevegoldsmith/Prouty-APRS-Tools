@@ -1,4 +1,4 @@
-Scanned 15763 entries, window 2026-07-10 04:00-2026-07-11 04:00z
+Scanned 7589 entries, window 2026-07-10 09:30-2026-07-10 19:19z
 
 Rover 4 (Sweep) (AB1XQ-9): no T# telemetry in window
 
@@ -11,30 +11,30 @@ Logistics Coord (N0JSR-9): no T# telemetry in window
 Lead Vehicle (NA1T-8): no T# telemetry in window
 
 === Med 1 (W1CMS-10) ===
-  T# samples: 63   first 07-10 09:13z  last 07-10 21:02z
+  T# samples: 51   first 07-10 09:33z  last 07-10 19:12z
   PARM: Vin,Temp,A3,A4,A5
   UNIT: Volt,C,None,None,None
   EQNS: [(0.0, 0.075, 0.0), (0.0, 0.5, -64.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0)]   (source: stream)
-  Voltage channel: ch1 'Vin'  min 12.75 / max 14.47 / last 13.80 Volt  (falling)
+  Voltage channel: ch1 'Vin'  min 12.75 / max 14.40 / last 14.10 Volt  (rising)
 
 Recovery Bus (W1CMS-12): no T# telemetry in window
 
 === Rover 1 (W1CMS-7) ===
-  T# samples: 36   first 07-10 08:38z  last 07-10 17:08z
+  T# samples: 33   first 07-10 09:38z  last 07-10 17:08z
   PARM: Vin,Temp,A3,A4,A5
   UNIT: Volt,C,None,None,None
   EQNS: [(0.0, 0.075, 0.0), (0.0, 0.5, -64.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0)]   (source: stream)
   Voltage channel: ch1 'Vin'  min 13.28 / max 13.42 / last 13.35 Volt  (steady)
 
 === Safety (W1CMS-8) ===
-  T# samples: 28   first 07-10 08:41z  last 07-10 21:54z
+  T# samples: 23   first 07-10 09:57z  last 07-10 18:57z
   PARM: Vin,Temp,A3,A4,A5
   UNIT: Volt,C,None,None,None
   EQNS: [(0.0, 0.075, 0.0), (0.0, 0.5, -64.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0)]   (source: stream)
-  Voltage channel: ch1 'Vin'  min 12.15 / max 14.92 / last 12.60 Volt  (falling)
+  Voltage channel: ch1 'Vin'  min 13.50 / max 14.92 / last 14.62 Volt  (steady)
 
 Bike Tech Van (W1HS-13): no T# telemetry in window
 
 Rover 2 (W1TGA-9): no T# telemetry in window
 
-Decoded time series -> output/2026/friday/telemetry_20260710_20260711.csv
+Decoded time series -> output/2026/friday/telemetry_20260710_20260710.csv
