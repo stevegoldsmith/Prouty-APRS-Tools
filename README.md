@@ -65,32 +65,20 @@ Default connection is `127.0.0.1:6379`, db `0`.
 
 ## Quick start
 
+Run one event day at a time. `run_day.sh` has the day's roster and the actual
+event window baked in (local Eastern time), so home-to-event driving is left
+out, then builds the per-tracker KMZ + overlay, tracker health and telemetry:
+
 ```bash
-# Per-tracker coverage footprints for the event window
-python3 tools/digi_kmz.py \
-  --calls N1GMC-1,N1GMC-2,W1FN-9,W1FN-5,W1FN-1,W1FN-3,WX1NH-10 \
-  --start 2026-07-10T00:00:00 --end 2026-07-11T23:59:59 \
-  --out-dir out/
-
-# Tracker tracks, then add per-packet dots
-python3 tools/prouty_kmz.py \
-  --calls W1CMS-7,W1CMS-8,W1CMS-9,W1CMS-10,W1CMS-11 \
-  --start 2026-07-10T00:00:00 --end 2026-07-11T23:59:59 --out-dir out/
-python3 tools/add_packet_dots.py out/ -o out/dots/
-
-# Tracker health + telemetry
-python3 tools/tracker_health.py \
-  --calls W1CMS-7,W1CMS-8,W1CMS-9,W1CMS-10,W1CMS-11 \
-  --start 2026-07-10T00:00:00 --end 2026-07-11T23:59:59 \
-  --min-voltage 11.5 --kmz --out-dir out/
-python3 tools/telemetry_decode.py \
-  --calls W1CMS-7,W1CMS-8,W1CMS-9,W1CMS-10,W1CMS-11 \
-  --start 2026-07-10T00:00:00 --end 2026-07-11T23:59:59 \
-  --min-voltage 11.5 --csv --out-dir out/
+bash tools/run_day.sh friday      # 05:30–15:19 EDT, config/friday.csv
+bash tools/run_day.sh saturday    # 05:30–16:10 EDT, config/saturday.csv
+bash tools/build_site.sh          # assemble + upload the gate site
 ```
 
-All times are UTC unless you include an offset (e.g. `...T00:00:00-04:00`).
-Each tool has `--help`.
+Event windows (from the net logs) live in `tools/run_day.sh`; edit them there
+if they change. To run a tool directly, each takes `--roster`, `--start`,
+`--end` and `--help`; times are UTC unless you add an offset
+(e.g. `2026-07-10T05:30:00-04:00`).
 
 ## 2026 findings
 
