@@ -20,10 +20,10 @@
 <main>
 
 <div class="tiles">
-  <div class="tile"><div class="n">15,763</div><div class="l">packets captured</div></div>
+  <div class="tile"><div class="n">7,589</div><div class="l">packets in the event window</div></div>
   <div class="tile"><div class="n">11</div><div class="l">assigned trackers</div></div>
-  <div class="tile"><div class="n">10</div><div class="l">GPS-loss events (3 Voyagers)</div></div>
-  <div class="tile"><div class="n">1</div><div class="l">null-GPS fault (Lead Vehicle)</div></div>
+  <div class="tile"><div class="n">5</div><div class="l">GPS-loss events (1 Voyager)</div></div>
+  <div class="tile"><div class="n">2</div><div class="l">position freezes</div></div>
 </div>
 
 <h2>Scope</h2>
@@ -35,86 +35,81 @@ infrastructure.</p>
  ours or any other in range; the maps are not filtered to our own stations. A gap is where no iGate heard
  the tracker, or it went quiet. Working out which of <em>our</em> digipeaters and iGates heard what is a
  separate analysis, not included here yet.</p>
-<p class="small">Window 2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC (local midnight to midnight, EDT).</p>
+<p class="small">Window 2026-07-10 09:30 &ndash; 19:19&nbsp;UTC (05:30&ndash;15:19 EDT, the event window).
+Driving to and from the event is excluded.</p>
 
 <h2>Maps</h2>
 <p>Every vehicle is plotted on the map below, each a different colour. Use the layers control (top
  right) to turn individual trackers on and off, or the all/none box to clear them. Each dot indicates a received position packet, so a stretch of road with no dots is where no receiver heard that tracker; tap a track's end dot for its tactical call.</p>
 <iframe class="map" src="aprs-map.html?day=friday" title="Friday tracker paths" loading="lazy"></iframe>
 <p class="small"><a href="aprs-map.html?day=friday" target="_blank">Open the map full-screen.</a>
-Per-tracker track files (each with a dot at every received packet) and the anomaly map (GPS-loss,
-freeze and bad-fix locations) are in the gate's <span class="mono">aprs/friday/</span> folder.</p>
+Per-tracker track files (each with a dot at every received packet) and the anomaly map (GPS-loss and
+freeze locations) are in the gate's <span class="mono">aprs/friday/</span> folder.</p>
 
 <h2>Where the trackers went</h2>
 <p>Packet counts are reliable; track distances are approximate and inflated by GPS jitter.</p>
 <table class="plain">
   <thead><tr><th>Assignment</th><th>Callsign</th><th>Packets</th><th>Approx. track</th></tr></thead>
   <tbody>
-    <tr><td>Lead Vehicle</td><td class="mono">NA1T-8</td><td>160</td><td><em>invalid &mdash; see faults</em></td></tr>
-    <tr><td>Logistics Coord.</td><td class="mono">N0JSR-9</td><td>132</td><td>187 km</td></tr>
-    <tr><td>Safety</td><td class="mono">W1CMS-8</td><td>129</td><td>242 km</td></tr>
-    <tr><td>Rover 1</td><td class="mono">W1CMS-7</td><td>145</td><td>173 km</td></tr>
+    <tr><td>Lead Vehicle</td><td class="mono">NA1T-8</td><td>148</td><td>157 km</td></tr>
+    <tr><td>Logistics Coord.</td><td class="mono">N0JSR-9</td><td>125</td><td>183 km</td></tr>
+    <tr><td>Safety</td><td class="mono">W1CMS-8</td><td>111</td><td>203 km</td></tr>
+    <tr><td>Rover 1</td><td class="mono">W1CMS-7</td><td>125</td><td>166 km</td></tr>
     <tr><td>Rover 2</td><td class="mono">W1TGA-9</td><td>102</td><td>139 km</td></tr>
-    <tr><td>Rover 3 (Recovery)</td><td class="mono">K1EHZ-9</td><td>143</td><td>129 km</td></tr>
-    <tr><td>Rover 4 (Sweep)</td><td class="mono">AB1XQ-9</td><td>272</td><td>256 km</td></tr>
-    <tr><td>Trouble</td><td class="mono">AE1H-9</td><td>203</td><td>191 km</td></tr>
-    <tr><td>Bike Tech Van</td><td class="mono">W1HS-13</td><td>81</td><td>143 km</td></tr>
+    <tr><td>Rover 3 (Recovery)</td><td class="mono">K1EHZ-9</td><td>121</td><td>120 km</td></tr>
+    <tr><td>Rover 4 (Sweep)</td><td class="mono">AB1XQ-9</td><td>213</td><td>162 km</td></tr>
+    <tr><td>Trouble</td><td class="mono">AE1H-9</td><td>186</td><td>164 km</td></tr>
+    <tr><td>Bike Tech Van</td><td class="mono">W1HS-13</td><td>81</td><td>142 km</td></tr>
     <tr><td>Recovery Bus</td><td class="mono">W1CMS-12</td><td>196</td><td>141 km</td></tr>
-    <tr><td>Med 1</td><td class="mono">W1CMS-10</td><td>237</td><td>177 km</td></tr>
+    <tr><td>Med 1</td><td class="mono">W1CMS-10</td><td>179</td><td>146 km</td></tr>
   </tbody>
 </table>
 
 <h2>GPS lock reporting (Voyagers)</h2>
 <p>This year we used several new Microsat Voyager trackers, which report their own GPS lock status
 &mdash; "GPS Lock Lost" when they lose the satellites, "GPS Locked" when they recover. That lets us
-say when one lost its fix and for how long. Three trackers reported GPS losses Friday, <strong>10 in
-total</strong>:</p>
+say when one lost its fix and for how long. Three Voyagers ran Friday (Safety, Rover&nbsp;1, Med&nbsp;1);
+of those, only Safety reported losses inside the event window, <strong>5 in total</strong>:</p>
 <table class="plain">
   <thead><tr><th>Assignment</th><th>Callsign</th><th>Losses</th><th>Longest</th><th>Notes</th></tr></thead>
   <tbody>
-    <tr><td>Safety</td><td class="mono">W1CMS-8</td><td>8</td><td>2 min</td><td>Scattered through the day; most seconds-long</td></tr>
-    <tr><td>Rover 1</td><td class="mono">W1CMS-7</td><td>1</td><td>24 s</td><td>Single, early (08:37)</td></tr>
-    <tr><td>Med 1</td><td class="mono">W1CMS-10</td><td>1</td><td>42 s</td><td>Single, morning (09:12)</td></tr>
+    <tr><td>Safety</td><td class="mono">W1CMS-8</td><td>5</td><td>2 min</td><td>Scattered through the day; two near 2&nbsp;min, the rest under a minute</td></tr>
   </tbody>
 </table>
-<p>Safety (W1CMS-8) lost lock most often but recovered within seconds each time. With its battery
-trend below, that points to an install or antenna issue rather than terrain.</p>
+<p>Safety (W1CMS-8) lost lock five times and recovered quickly each time. Its battery stayed in the
+normal band all day (below), so the losses are not power-related &mdash; the GPS antenna or its install on
+that vehicle is the thing to check. The anomaly map has the exact loss locations.</p>
 
 <h2>Battery telemetry</h2>
-<p>Voltage from the Voyagers' analog telemetry (channel&nbsp;1 = input voltage). The other Friday
-trackers carry no telemetry; everyone stayed in the normal 12&ndash;15&nbsp;V band and nobody hit a
-low-battery condition.</p>
+<p>Voltage from the three Voyagers' analog telemetry (channel&nbsp;1 = input voltage). The other Friday
+trackers carry no telemetry. All three stayed in the normal 12&ndash;15&nbsp;V band through the event; none
+hit a low-battery condition.</p>
 <table class="plain">
   <thead><tr><th>Assignment</th><th>Callsign</th><th>Min&nbsp;V</th><th>Max&nbsp;V</th><th>Last&nbsp;V</th><th>Trend</th></tr></thead>
   <tbody>
     <tr><td>Rover 1</td><td class="mono">W1CMS-7</td><td>13.28</td><td>13.42</td><td>13.35</td><td>steady</td></tr>
-    <tr><td>Safety</td><td class="mono">W1CMS-8</td><td>12.15</td><td>14.92</td><td>12.60</td><td><span class="flag">falling</span></td></tr>
-    <tr><td>Med 1</td><td class="mono">W1CMS-10</td><td>12.75</td><td>14.47</td><td>13.80</td><td>falling</td></tr>
+    <tr><td>Safety</td><td class="mono">W1CMS-8</td><td>13.50</td><td>14.92</td><td>14.62</td><td>steady</td></tr>
+    <tr><td>Med 1</td><td class="mono">W1CMS-10</td><td>12.75</td><td>14.40</td><td>14.10</td><td>rising</td></tr>
   </tbody>
 </table>
-<blockquote>
-  <p><strong>Safety (W1CMS-8)</strong> charged to 14.92&nbsp;V but ended the day down at 12.60, and had
-  the most GPS losses. Worth a charging/wiring check &mdash; more so given its Saturday run as Rover&nbsp;6-7,
-  where it never charged above 12.97&nbsp;V.</p>
-</blockquote>
+<p class="small">Note: the same unit ran as Rover&nbsp;6-7 on Saturday and never rose above 12.97&nbsp;V that
+day &mdash; see the <a href="2026-07-11-aprs-saturday.html">Saturday report</a>. Friday it charged and held
+normally.</p>
 
 <h2>Faults</h2>
-<p><strong>Lead Vehicle (NA1T-8)</strong> sent null-island (0,&nbsp;0) position fixes &mdash; an invalid
-GPS reading. Its reported 8,752&nbsp;km distance and impossible implied speeds are artefacts of the
-tracker jumping between 0,0 and its real position; its true track is short. The fault is in the
-tracker's own output, not coverage.</p>
-<p><strong>Logistics Coord. (N0JSR-9)</strong> froze for 30&nbsp;minutes (17:46&ndash;18:17) near
+<p><strong>Logistics Coord. (N0JSR-9)</strong> froze for 30&nbsp;minutes (17:46&ndash;18:17&nbsp;UTC) near
 43.712,&nbsp;&minus;72.417 while still reporting movement &mdash; a stuck position worth a look, and
 notable because it is not a Voyager and so cannot self-report a GPS loss.
-<strong>Med 1 (W1CMS-10)</strong> had a shorter 8-minute freeze mid-afternoon.</p>
+<strong>Med 1 (W1CMS-10)</strong> had a shorter 8-minute freeze (15:40&ndash;15:48&nbsp;UTC) near
+43.729,&nbsp;&minus;72.619.</p>
 
 <h2>Dropouts</h2>
 <p>Every tracker logged multi-minute silences. Whether each is a coverage gap or the tracker going
 silent is not yet separated out; that needs the coverage data cross-referenced.</p>
 
-<p class="source">Source: <span class="mono">aprsis</span> capture stream, 15,763 packets · window
-2026-07-10 04:00 &ndash; 2026-07-11 04:00&nbsp;UTC · 11 assigned trackers (<span class="mono">config/friday.csv</span>).<br>
-Report generated 2026-11-17 17:30&nbsp;UTC.</p>
+<p class="source">Source: <span class="mono">aprsis</span> capture stream, 7,589 packets · window
+2026-07-10 09:30 &ndash; 19:19&nbsp;UTC (05:30&ndash;15:19 EDT) · 11 assigned trackers (<span class="mono">config/friday.csv</span>).<br>
+Report generated 2026-11-18 14:50&nbsp;UTC.</p>
 
 </main>
 </div>
