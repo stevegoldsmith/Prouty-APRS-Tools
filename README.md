@@ -2,7 +2,7 @@
 
 Post-event APRS log analysis for **The Prouty** (Twin State Radio Club / W1FN,
 West Central NH ARES). A small set of standalone Python tools that replay a
-captured APRS-IS packet stream to produce coverage maps, rover tracks, and
+captured APRS-IS packet stream to produce coverage maps, vehicle tracks, and
 tracker health / telemetry reports.
 
 Built for the 2026 Prouty (Ultimate: Fri Jul 10; Bike Event: Sat Jul 11), but
@@ -66,13 +66,13 @@ Default connection is `127.0.0.1:6379`, db `0`.
 ## Quick start
 
 ```bash
-# Rover coverage footprints for the event window
+# Per-tracker coverage footprints for the event window
 python3 tools/digi_kmz.py \
   --calls N1GMC-1,N1GMC-2,W1FN-9,W1FN-5,W1FN-1,W1FN-3,WX1NH-10 \
   --start 2026-07-10T00:00:00 --end 2026-07-11T23:59:59 \
   --out-dir out/
 
-# Rover tracks, then add per-packet dots
+# Tracker tracks, then add per-packet dots
 python3 tools/prouty_kmz.py \
   --calls W1CMS-7,W1CMS-8,W1CMS-9,W1CMS-10,W1CMS-11 \
   --start 2026-07-10T00:00:00 --end 2026-07-11T23:59:59 --out-dir out/
@@ -94,7 +94,7 @@ Each tool has `--help`.
 
 ## 2026 findings
 
-A written summary of the 2026 results (coverage, rover tracks, GPS-loss
+A written summary of the 2026 results (coverage, vehicle tracks, GPS-loss
 behavior of the new Microsat Voyager trackers, and battery telemetry) is in
 [`docs/aprs-analysis.html`](docs/aprs-analysis.html) — the APRS section of the
 Prouty 2026 After Action Records.
