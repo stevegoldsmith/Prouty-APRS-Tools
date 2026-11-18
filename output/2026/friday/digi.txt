@@ -1,0 +1,12 @@
+Scanned 7589 stream entries.  igate credit: RF only (qAR/qAO)
+
+station    color     field  infra  direct  relayed  home
+N1GMC-1    red           0      0       0        0   yes
+N1GMC-2    green         1      0       1        0   yes
+W1FN-1     blue        198     10     206        2   yes
+W1FN-3     orange       35      1      35        1   yes
+W1FN-5     purple     1726    168    1662      232   yes
+W1FN-9     cyan         14      0      14        0   yes
+WX1NH-10   magenta     225    284     460       49    no
+
+Combined KMZ written to output/2026/friday/fri-digi.kmz
